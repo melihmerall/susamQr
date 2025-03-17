@@ -1,0 +1,127 @@
+/* turuncu theme */
+.turuncu-theme .bg-background,
+.turuncu-theme .header.active,
+.turuncu-theme .list-group-item.active {
+    background-color: #f7ece4
+}
+
+.turuncu-theme .wrapper {
+    background-color: #f7ece4;
+    background-image: -moz-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #f7ece4 100%);
+    background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(250, 250, 250, 1)), color-stop(100%, #f7ece4));
+    background-image: -webkit-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #f7ece4 100%);
+    background-image: -o-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #f7ece4 100%);
+    background-image: -ms-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #f7ece4 100%);
+    background-image: radial-gradient(ellipse at center, rgba(250, 250, 250, 1) 0%, #f7ece4 100%);
+    background-attachment: inherit;
+    background-position: center top;
+    background-size: 100% 100%;
+}
+
+.turuncu-theme body,
+.turuncu-theme body.sidemenu-open,
+.turuncu-theme .bg-template,
+.turuncu-theme .btn-default,
+.turuncu-theme .custom-control-input:checked ~ .custom-control-label::before,
+.turuncu-theme .small-slide .swiper-slide .card:hover,
+.turuncu-theme .small-slide .swiper-slide .card:focus,
+.turuncu-theme .filter,
+.turuncu-theme .chosen-container .chosen-results li.highlighted,
+.turuncu-theme .page-item.active .page-link,
+.turuncu-theme .nav-pills .nav-link.active,
+.turuncu-theme .nav-pills .show > .nav-link,
+.turuncu-theme .loader-screen {
+    background-color: #ff6000;
+}
+
+.turuncu-theme .filter,
+.turuncu-theme .filter .form-control,
+.turuncu-theme .filter .form-group label,
+.turuncu-theme .float-label .chosen-container-multi .chosen-choices,
+.turuncu-theme .float-label .chosen-container-multi .chosen-choices li.search-field input[type=text],
+.turuncu-theme .filter .chosen-container-multi .chosen-choices li.search-choice,
+.turuncu-theme .btn-default,
+.turuncu-theme .sidebar,
+.turuncu-theme .sidebar .main-menu .list-group-item,
+.turuncu-theme .small-slide .swiper-slide .card:hover *,
+.turuncu-theme .small-slide .swiper-slide .card:focus * {
+    color: #ffff !important;
+}
+
+.turuncu-theme .filter .form-group label {
+    opacity: 0.85;
+}
+
+.turuncu-theme .btn-default:hover,
+.turuncu-theme .btn-default:focus {
+    color: #ffffff;
+    background-color: #cd5c00;
+}
+
+.turuncu-theme .figure-profile,
+.turuncu-theme .form-control:focus,
+.turuncu-theme .custom-control-input:focus ~ .custom-control-label::before,
+.turuncu-theme .custom-control-input:checked ~ .custom-control-label::before,
+.turuncu-theme .float-label .form-control:focus,
+.turuncu-theme .page-item.active .page-link,
+.turuncu-theme .btn-outline-default {
+    border-color: #ff6000
+}
+
+.turuncu-theme .filter .form-control:focus,
+.turuncu-theme .filter .custom-control-input:focus ~ .custom-control-label::before,
+.turuncu-theme .filter .custom-control-input:checked ~ .custom-control-label::before,
+.turuncu-theme .filter .float-label .form-control:focus {
+    border-color: #ffffff
+}
+
+.turuncu-theme .custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 104, 0.3);
+}
+
+.turuncu-theme .btn-light:hover,
+.turuncu-theme .btn-light:focus,
+.turuncu-theme .btn-light:not(:disabled):not(.disabled).active,
+.turuncu-theme .bg-template-light {
+    background-color: #e8c1a9
+}
+
+.turuncu-theme .text-template,
+.turuncu-theme .btn-link,
+.turuncu-theme a,
+.turuncu-theme .float-label .form-control:focus + .form-control-label,
+.turuncu-theme .btn-light:hover,
+.turuncu-theme .btn-light:focus,
+.turuncu-theme .btn-light:not(:disabled):not(.disabled).active,
+.turuncu-theme .btn.btn-link-default:hover,
+.turuncu-theme .btn.btn-link-default:focus,
+.turuncu-theme .btn.btn-link-default.active {
+    color: #ff6000;
+}
+
+.turuncu-theme .bg-warning,
+.turuncu-theme .badge-warning {
+    background-color: #FDD835 !important;
+}
+
+.turuncu-theme .bg-success,
+.turuncu-theme .badge-success {
+    background-color: #5fefa1 !important;
+}
+
+.turuncu-theme .bg-orange,
+.turuncu-theme .badge-orange {
+    background-color: #ff9133 !important;
+}
+
+.turuncu-theme .bg-primary,
+.turuncu-theme .badge-primary {
+    background-color: #3fa7ff !important;
+}
+
+.turuncu-theme .orange-slice {
+    margin-right: -110px;
+}
+
+
+

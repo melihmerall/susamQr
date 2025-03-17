@@ -1,0 +1,120 @@
+﻿@using susamQr.Models.Entities
+@{
+
+}
+<style>
+    .swiper-slides {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 278px; /* 📌 Büyük ekranlar için */
+        max-height: 60vh; /* 📌 Yüksekliği aşmaması için */
+    }
+
+    /* 📌 Mobilde slider yüksekliği küçültme */
+    @@media (max-width: 768px) {
+        .swiper-slides {
+            height: 200px; /* 📌 Mobilde daha küçük yap */
+        }
+    }
+
+    /* 📌 Öne çıkan ürünlerin slider’a taşmasını önleme */
+    .high-products-container {
+        margin-top: 20px; /* 📌 Slider’ın altına boşluk ekler */
+    }
+
+    /* 📌 Ürün resimlerini düzgün hizalama */
+    .product-image img {
+        width: 100%; /* 📌 Tüm alanı kaplasın */
+        height: 180px; /* 🌟 Standart boyut ver */
+        object-fit: cover; /* 📌 Resim bozulmadan alana sığsın */
+    }
+
+    @@media (max-width: 768px) {
+        .product-image img {
+            height: 140px; /* 📌 Mobilde daha küçük yap */
+        }
+    }
+</style>
+<h6 class="subtitle">Kategoriler</h6>
+<div class="row">
+    <div class="swiper-container small-slide">
+        <div class="swiper-wrapper">
+            @if (ViewData["categories"] is List<Category> categories && categories.Any())
+            {
+                @foreach (var category in categories)
+                {
+
+                    <div class="swiper-slide">
+                        <div onclick="window.location.href = '/kategori/@category.Slug'" class="card shadow-sm border-0">
+
+                            <div class="bg-image hover-overlay ripple w-100" data-mdb-ripple-color="light">
+                                <img src="@category.ImageUrl"
+                                     class="swiper-radius img-fluid" />
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="/kategori/@category.Slug">@category.Name</a>
+                                </h5>
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<!-- ✅ Slider Bölümü -->
+<div class="vitrin">
+    <div data-effect="cube" class="swiper-containerVitrin swiper-init demo-vitrin demo-swiper-cube">
+        <div class="swiper-wrapper">
+            <div class="swiper-slides"
+                 style="background-image: url('@ViewData["slider-kapak"]');">
+                <div hidden class="vitrinBaslik">1</div>
+                <div style="display:none;" class="vitrinAciklama">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <!-- 📌 Öne Çıkarılan Ürünler (Slider'a Yapışmasını Önledik) -->
+    <div class="high-products-container">
+        <h6 class="subtitle">Öne Çıkarılan Ürünler</h6>
+        <div class="row">
+            @if (ViewData["highProducts"] is List<Product> highProducts && highProducts.Any())
+            {
+                @foreach (var product in highProducts)
+                {
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                        <div class="card shadow-sm border-0 mb-4">
+                            <div class="card-body">
+                                <a href="/urun/@product.Slug">
+                                    <figure class="product-image">
+                                        <img src="@product.ImageUrl"
+                                             alt="@product.Name">
+                                    </figure>
+                                </a>
+                                <a style="height:40px;" href="/urun/@product.Slug"
+                                   class="text-dark mb-1 mt-2 h6 d-block">@product.Name</a>
+                                <p class="text-secondary small mb-2">@product.Description</p>
+                                <h5 class="text-success font-weight-normal mb-0">@product.Price.Value.ToString("N2")₺</h5>
+                                <a href="/urun/@product.Slug"
+                                   class="btn btn-default button-rounded-36 shadow-sm float-bottom-right">
+                                    <i class="fa fa-arrow-right md-18"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-muted">Henüz öne çıkarılmış ürün bulunmamaktadır.</p>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+﻿@using susamQr.Models.Entities
+@model List<Setting>
+@{
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+	var mail = Model.Where(x => x.Name == "siteSahibiMail");
+	var telNo = Model.Where(x => x.Name == "siteSahibiTel");
+	var isim = Model.Where(x => x.Name == "siteSahibi");
+}
+	<div class="wrap">
+		<section class="app-content">
+
+			<div class="row">
+				<div class="col-md-6 col-sm-6">
+					<div class="widget p-md clearfix">
+						<div class="pull-left">
+							<h3 class="widget-title">Site Bilgileri</h3>
+							<small class="text-color">Mail: @mail.FirstOrDefault().Value</small><br />
+						<small class="text-color">Telefon No: @telNo.FirstOrDefault().Value</small><br />
+
+						</div>
+						<span class="pull-right fz-lg fw-500 text-primary" >Aktif</span>
+					</div><!-- .widget -->
+				</div>
+
+				<div class="col-md-6 col-sm-6">
+					<div class="widget p-md clearfix">
+						<div class="pull-left">
+							<h3 class="widget-title">Öneri & Görüş İletişim Adresi</h3>
+							<small class="text-color">info@hexaops.net</small>
+						</div>
+					</div><!-- .widget -->
+				</div>
+			</div><!-- .row -->
+
+			<div class="row">
+				<div class="col-md-3 col-sm-6">
+					<div class="widget stats-widget">
+						<div class="widget-body clearfix">
+							<div class="pull-left">
+								<h3 class="widget-title text-primary"><span class="counter" data-plugin="counterUp">@ViewBag.ProductCount</span></h3>
+								<small class="text-color">Toplam Ürün</small>
+							</div>
+							<span class="pull-right big-icon watermark"><i class="fa fa-paperclip"></i></span>
+						</div>
+						<footer class="widget-footer bg-primary">
+							<span class="small-chart pull-right" data-plugin="sparkline" data-options="[4,3,5,2,1], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
+						</footer>
+					</div><!-- .widget -->
+				</div>
+
+				<div class="col-md-3 col-sm-6">
+					<div class="widget stats-widget">
+						<div class="widget-body clearfix">
+							<div class="pull-left">
+							<h3 class="widget-title text-primary"><span class="counter" data-plugin="counterUp">@ViewBag.CategoryCount</span></h3>
+								<small class="text-color">Toplam Kategori</small>
+							</div>
+							<span class="pull-right big-icon watermark"><i class="fa fa-ban"></i></span>
+						</div>
+						<footer class="widget-footer bg-info">
+							<span class="small-chart pull-right" data-plugin="sparkline" data-options="[1,2,3,5,4], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
+						</footer>
+					</div><!-- .widget -->
+				</div>
+
+				<div class="col-md-3 col-sm-6">
+					<div class="widget stats-widget">
+						<div class="widget-body clearfix">
+							<div class="pull-left">
+								<h3 class="widget-title text-success">Site Sahibi</h3>
+							<small class="text-color">@isim.FirstOrDefault().Value</small>
+
+							</div>
+							<span class="pull-right big-icon watermark"><i class="fa fa-unlock-alt"></i></span>
+						</div>
+						<footer class="widget-footer bg-success">
+							<span class="small-chart pull-right" data-plugin="sparkline" data-options="[2,4,3,4,3], { type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
+						</footer>
+					</div><!-- .widget -->
+				</div>
+
+				<div class="col-md-3 col-sm-6">
+					<div class="widget stats-widget">
+						<div class="widget-body clearfix">
+							<div class="pull-left">
+								<h3 class="widget-title text-warning">Version</h3>
+								<small class="text-color">1.0</small>
+							</div>
+							<span class="pull-right big-icon watermark"><i class="fa fa-file-text-o"></i></span>
+						</div>
+						<footer class="widget-footer bg-warning">
+							<span class="small-chart pull-right" data-plugin="sparkline" data-options="[5,4,3,5,2],{ type: 'bar', barColor: '#ffffff', barWidth: 5, barSpacing: 2 }"></span>
+						</footer>
+					</div><!-- .widget -->
+				</div>
+			</div><!-- .row -->
+
+	</div><!-- .wrap -->
+	<!-- APP FOOTER -->

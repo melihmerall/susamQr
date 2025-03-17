@@ -1,0 +1,101 @@
+
+.pembe-theme .bg-background,
+.pembe-theme .header.active,
+.pembe-theme .list-group-item.active {
+    background-color: #E3EAF1
+}
+
+.pembe-theme .wrapper {
+    background-color: #E3EAF1;
+    background-image: -moz-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #E3EAF1 100%);
+    background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(250, 250, 250, 1)), color-stop(100%, #E3EAF1));
+    background-image: -webkit-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #E3EAF1 100%);
+    background-image: -o-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #E3EAF1 100%);
+    background-image: -ms-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #E3EAF1 100%);
+    background-image: radial-gradient(ellipse at center, rgba(250, 250, 250, 1) 0%, #E3EAF1 100%);
+    background-attachment: inherit;
+    background-position: center top;
+    background-size: 100% 100%;
+}
+
+.pembe-theme body,
+.pembe-theme body.sidemenu-open,
+.pembe-theme .bg-template,
+.pembe-theme .btn-default,
+.pembe-theme .custom-control-input:checked ~ .custom-control-label::before,
+.pembe-theme .small-slide .swiper-slide .card:hover,
+.pembe-theme .small-slide .swiper-slide .card:focus,
+.pembe-theme .filter,
+.pembe-theme .chosen-container .chosen-results li.highlighted,
+.pembe-theme .page-item.active .page-link,
+.pembe-theme .nav-pills .nav-link.active,
+.pembe-theme .nav-pills .show > .nav-link,
+.pembe-theme .loader-screen {
+    background-color: #FF0068;
+}
+
+.pembe-theme .filter,
+.pembe-theme .filter .form-control,
+.pembe-theme .filter .form-group label,
+.pembe-theme .float-label .chosen-container-multi .chosen-choices,
+.pembe-theme .float-label .chosen-container-multi .chosen-choices li.search-field input[type=text],
+.pembe-theme .filter .chosen-container-multi .chosen-choices li.search-choice,
+.pembe-theme .btn-default,
+.pembe-theme .sidebar,
+.pembe-theme .sidebar .main-menu .list-group-item,
+.pembe-theme .small-slide .swiper-slide .card:hover *,
+.pembe-theme .small-slide .swiper-slide .card:focus * {
+    color: #ffff !important;
+}
+
+.pembe-theme .filter .form-group label {
+    opacity: 0.85;
+}
+
+.pembe-theme .btn-default:hover,
+.pembe-theme .btn-default:focus {
+    color: #ffffff;
+    background-color: #dd015b;
+}
+
+.pembe-theme .figure-profile,
+.pembe-theme .form-control:focus,
+.pembe-theme .custom-control-input:focus ~ .custom-control-label::before,
+.pembe-theme .custom-control-input:checked ~ .custom-control-label::before,
+.pembe-theme .float-label .form-control:focus,
+.pembe-theme .page-item.active .page-link,
+.pembe-theme .btn-outline-default {
+    border-color: #FF0068
+}
+
+.pembe-theme .filter .form-control:focus,
+.pembe-theme .filter .custom-control-input:focus ~ .custom-control-label::before,
+.pembe-theme .filter .custom-control-input:checked ~ .custom-control-label::before,
+.pembe-theme .filter .float-label .form-control:focus {
+    border-color: #ffffff
+}
+
+.pembe-theme .custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 104, 0.3);
+}
+
+.pembe-theme .btn-light:hover,
+.pembe-theme .btn-light:focus,
+.pembe-theme .btn-light:not(:disabled):not(.disabled).active,
+.pembe-theme .bg-template-light {
+    background-color: #FFE5F0
+}
+
+.pembe-theme .text-template,
+.pembe-theme .btn-link,
+.pembe-theme a,
+.pembe-theme .float-label .form-control:focus + .form-control-label,
+.pembe-theme .btn-light:hover,
+.pembe-theme .btn-light:focus,
+.pembe-theme .btn-light:not(:disabled):not(.disabled).active,
+.pembe-theme .btn.btn-link-default:hover,
+.pembe-theme .btn.btn-link-default:focus,
+.pembe-theme .btn.btn-link-default.active {
+    color: #FF0068;
+}
+

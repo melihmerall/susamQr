@@ -1,0 +1,165 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    /* 📌 Sayfa Başlığı Stili */
+    .custom-header {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 6px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+        .custom-header i {
+            color: #007bff;
+            font-size: 22px;
+            margin-right: 10px;
+        }
+
+    /* 📌 Dosya Yükleme Alanı */
+    .custom-file-upload {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        border: 2px dashed #ccc;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        background: #f9f9f9;
+        width: 100%;
+    }
+
+        .custom-file-upload:hover {
+            border-color: #007bff;
+            background: #f1f1f1;
+        }
+
+        .custom-file-upload .file-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .custom-file-upload .upload-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #007bff;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .custom-file-upload .file-name {
+            font-size: 12px;
+            color: #555;
+            display: block;
+            margin-top: 5px;
+        }
+
+</style>
+
+<div class="wrap">
+    <section class="app-content">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="widget">
+                    <!-- 📌 Sayfa Başlığı -->
+                    <header class="custom-header">
+                        <h4 class="widget-title">
+                            <i class="fa fa-image"></i> Slider Ekle
+                        </h4>
+                        <a href="/admin/sliders" class="btn btn-secondary">
+                            <i class="fa fa-arrow-left"></i> Geri Dön
+                        </a>
+                    </header>
+
+                    <hr class="widget-separator">
+
+                    <div class="widget-body">
+                        <form id="sliderForm" enctype="multipart/form-data">
+                            <!-- 📌 Slider Başlığı -->
+                            <div class="form-group">
+                                <label for="sliderTitle"><i class="fa fa-heading"></i> Başlık</label>
+                                <input type="text" class="form-control" id="sliderTitle" name="Title" placeholder="Slider başlığını giriniz" required maxlength="100">
+                            </div>
+
+                            <!-- 📌 Açıklama -->
+                            <div class="form-group">
+                                <label for="sliderDescription"><i class="fa fa-info-circle"></i> Açıklama (Opsiyonel)</label>
+                                <textarea class="form-control" id="sliderDescription" name="Description" rows="3" maxlength="300"></textarea>
+                            </div>
+
+                            <!-- 📌 Dosya Yükleme -->
+                            <div class="form-group">
+                                <label><i class="fa fa-image"></i> Slider Fotoğrafı</label>
+                                <div class="custom-file-upload">
+                                    <input type="file" class="file-input image-upload" id="sliderImage" name="ImageFile" accept="image/*" required>
+                                    <label class="upload-label">
+                                        <i class="fa fa-upload"></i> Resim Seçerek Yükleyin
+                                    </label>
+                                    <span class="file-name">Dosya seçilmedi</span>
+                                </div>
+                            </div>
+
+                            <!-- 📌 Kaydet Butonu -->
+                            <button type="submit" class="btn btn-primary btn-md w-100">
+                                <i class="fa fa-save"></i> Kaydet
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- 📌 SweetAlert ve jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(document).ready(function () {
+        // 📌 Dosya Adını Güncelleme
+        $(".file-input").change(function () {
+            var fileName = $(this).prop("files")[0].name;
+            $(this).siblings(".file-name").text(fileName);
+        });
+
+        // 📌 Slider Ekleme (AJAX)
+        $("#sliderForm").submit(function (event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: "/AddSlider",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: "Başarılı!",
+                            text: "Slider başarıyla eklendi.",
+                            icon: "success",
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => location.href = "/sliders");
+                    } else {
+                        Swal.fire("Hata!", "Slider eklenirken bir sorun oluştu!", "error");
+                    }
+                },
+                error: function () {
+                    Swal.fire("Sunucu Hatası!", "Bir hata oluştu. Lütfen tekrar deneyin.", "error");
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,222 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    /* 📌 Sayfa Başlığı Stili */
+    .custom-header {
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 6px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+        .custom-header i {
+            color: #007bff;
+            font-size: 22px;
+            margin-right: 10px;
+        }
+
+    /* 📌 Dosya Yükleme Alanı */
+    .custom-file-upload {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        border: 2px dashed #ccc;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        background: #f9f9f9;
+        width: 100%;
+    }
+
+        .custom-file-upload:hover {
+            border-color: #007bff;
+            background: #f1f1f1;
+        }
+
+        .custom-file-upload .file-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .custom-file-upload .upload-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #007bff;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .custom-file-upload .file-name {
+            font-size: 12px;
+            color: #555;
+            display: block;
+            margin-top: 5px;
+        }
+
+</style>
+
+<div class="wrap">
+    <section class="app-content">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="widget">
+                    <!-- 📌 Sayfa Başlığı -->
+                    <header class="custom-header">
+                        <h4 class="widget-title">
+                            <i class="fa fa-plus-circle"></i> Ürün Ekle
+                        </h4>
+                        <a href="/urun-listesi" class="btn btn-secondary">
+                            <i class="fa fa-arrow-left"></i> Geri Dön
+                        </a>
+                    </header>
+
+                    <hr class="widget-separator">
+
+                    <div class="widget-body">
+                        <form id="productForm" enctype="multipart/form-data">
+                            <!-- 📌 Ürün Adı -->
+                            <div class="form-group">
+                                <label for="productName"><i class="fa fa-tag"></i> Ürün Adı</label>
+                                <input type="text" class="form-control" id="productName" name="Name" placeholder="Ürün adını giriniz" required maxlength="50">
+                            </div>
+                            <div class="form-group">
+                                <label for="productName"><i class="fa fa-tag"></i> Ürün Url Adı</label>
+                                <input type="text" class="form-control" id="urlName" name="Slug" placeholder="Ürün Url adını giriniz" required maxlength="50">
+                            </div>
+                            <!-- 📌 Açıklama -->
+                            <div class="form-group">
+                                <label for="productDescription"><i class="fa fa-info-circle"></i> Açıklama (Opsiyonel)</label>
+                                <textarea class="form-control" id="productDescription" name="Description" rows="3" maxlength="200"></textarea>
+                            </div>
+
+                            <!-- 📌 Fiyat -->
+                            <div class="form-group">
+                                <label for="productPrice"><i class="fa fa-money-bill-wave"></i> Fiyat (₺)</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control price-input" id="productPrice" name="Price" placeholder="0,00" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">₺</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 📌 Kategori Seçimi -->
+                            <div class="form-group">
+                                <label for="productCategory"><i class="fa fa-list"></i> Kategori</label>
+                                <select class="form-control" id="productCategory" name="CategoryId">
+                                    @foreach (var category in ViewBag.Categories)
+                                    {
+                                        <option value="@category.Id">@category.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <!-- 📌 Durum Seçimi -->
+                            <div class="form-group">
+                                <label for="productStatus"><i class="fa fa-toggle-on"></i> Durum</label>
+                                <select class="form-control" id="productStatus" name="Status">
+                                    <option value="true">Aktif</option>
+                                    <option value="false">Pasif</option>
+                                </select>
+                            </div>
+
+                            <!-- 📌 hig Seçimi -->
+                            <div class="form-group">
+                                <label for="productStatus"><i class="fa fa-toggle-on"></i> Öne Çıkarma Durumu</label>
+                                <select class="form-control" id="productHighlith" name="IsHighlight">
+                                    <option value="true">Aktif</option>
+                                    <option value="false">Pasif</option>
+                                </select>
+                            </div>
+
+                            <!-- 📌 Dosya Yükleme -->
+                            <div class="form-group">
+                                <label><i class="fa fa-image"></i> Ürün Fotoğrafı</label>
+                                <div class="custom-file-upload">
+                                    <input type="file" class="file-input image-upload" id="productImage" name="ImageFile" accept="image/*">
+                                    <label class="upload-label">
+                                        <i class="fa fa-upload"></i> Resim Seçerek Yükleyin
+                                    </label>
+                                    <span class="file-name">Dosya seçilmedi</span>
+                                </div>
+                            </div>
+
+                            <!-- 📌 Kaydet Butonu -->
+                            <button type="submit" class="btn btn-primary btn-md w-100">
+                                <i class="fa fa-save"></i> Kaydet
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- 📌 SweetAlert ve jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(document).ready(function () {
+        // 📌 Dosya Adını Güncelleme
+        $(".file-input").change(function () {
+            var fileName = $(this).prop("files")[0].name;
+            $(this).siblings(".file-name").text(fileName);
+        });
+
+        // 📌 Ürün Ekleme (AJAX)
+        $("#productForm").submit(function (event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajax({
+                type: "POST",
+                url: "/urun-ekle",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: "Başarılı!",
+                            text: "Ürün başarıyla eklendi.",
+                            icon: "success",
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => location.reload());
+                    } else {
+                        Swal.fire("Hata!", "Ürün eklenirken bir sorun oluştu!", "error");
+                    }
+                },
+                error: function () {
+                    Swal.fire("Sunucu Hatası!", "Bir hata oluştu. Lütfen tekrar deneyin.", "error");
+                }
+            });
+        });
+    });
+    $(document).ready(function () {
+        $(".price-input").on("input", function () {
+            let value = $(this).val().replace(/[^0-9,]/g, ""); // Sadece sayı ve virgül al
+            value = value.replace(",", "."); // Virgülü noktaya çevir
+
+            if (value === "" || isNaN(value)) {
+                $(this).val("0,00"); // Boşsa veya yanlış girildiyse 0.00 göster
+                return;
+            }
+
+            let formattedValue = parseFloat(value).toFixed(2).replace(".", ","); // TL formatı
+            $(this).val(formattedValue);
+        });
+    });
+</script>

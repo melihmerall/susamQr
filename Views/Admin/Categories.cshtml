@@ -1,0 +1,317 @@
+﻿@using susamQr.Models.Entities
+@model List<Category>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .editable {
+        cursor: pointer;
+        border-bottom: 1px dashed #aaa;
+        padding: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        /* Editleme moduna geçince vurgu */
+        .editable:focus {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #007bff;
+            outline: none;
+        }
+
+    /* ✅ Checkbox için daha iyi görünüm */
+    .toggle-status {
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+
+    /* ✅ Butonları daha estetik hale getirelim */
+    .save-category,
+    .delete-category {
+        transition: all 0.3s ease-in-out;
+        border-radius: 6px;
+    }
+
+        .save-category:hover {
+            background-color: #28a745 !important;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .delete-category:hover {
+            background-color: #dc3545 !important;
+            color: white;
+            transform: scale(1.05);
+        }
+
+    /* ✅ Modern Dosya Yükleme Alanı */
+    .custom-file-upload {
+        position: relative;
+        display: inline-block;
+        text-align: center;
+        border: 2px dashed #ccc;
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        background: #f9f9f9;
+        width: 180px;
+    }
+
+        .custom-file-upload:hover {
+            border-color: #007bff;
+            background: #f1f1f1;
+        }
+
+        .custom-file-upload .file-input {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .custom-file-upload .upload-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #007bff;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .custom-file-upload .file-name {
+            font-size: 12px;
+            color: #555;
+            display: block;
+            margin-top: 5px;
+        }
+
+    .alert-info {
+        background-color: #e7f3fe;
+        border-left: 4px solid #007bff;
+        color: #0056b3;
+        font-weight: 500;
+        font-size: 14px;
+        border-radius: 6px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+        .alert-info i {
+            color: #007bff;
+        }
+
+    .widget-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #333;
+        display: flex;
+        align-items: center;
+    }
+
+        .widget-title i {
+            margin-right: 8px;
+            color: #007bff;
+        }
+
+    .btn-success {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 8px 14px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .btn-success:hover {
+            background-color: #28a745 !important;
+            transform: scale(1.05);
+        }
+
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="wrap">
+    <section class="app-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <header class="widget-header">
+                        <h4 class="widget-title text-primary">
+                            <i class="fa fa-list-alt"></i> Kategori Listesi
+                        </h4>
+
+                        <div class="alert alert-info d-flex align-items-center mt-3" role="alert">
+                            <i class="fa fa-info-circle fa-lg me-2"></i>
+                            <span>
+                                Kategori düzenlemek için istediğiniz alanın üstüne tıklayıp değişiklik yapabilirsiniz.
+                                Daha sonra <strong>"Kaydet"</strong> butonuna basarak kayıt edebilirsiniz.
+                            </span>
+                        </div>
+
+                        <a href="/kategori-ekle" class="btn btn-success">
+                            <i class="fa fa-plus"></i> Yeni Ekle
+                        </a>
+                    </header>
+                    <hr class="widget-separator">
+                    <div class="widget-body">
+                        <div class="table-responsive">
+                            <table id="default-datatable" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Resim</th>
+                                        <th>Kategori Adı</th>
+                                        <th>Açıklama</th>
+                                                                                <th>Slug-Url</th>
+
+                                        <th>Durum</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var i in Model)
+                                    {
+                                        <tr data-id="@i.Id">
+                                            <td>
+                                                <img width="100" src="@i.ImageUrl" class="category-image" />
+
+                                                <!-- Custom File Input -->
+                                                <div class="custom-file-upload mt-2">
+                                                    <input type="file" class="file-input image-upload" accept="image/*" />
+                                                    <label class="upload-label">
+                                                        <i class="fa fa-upload"></i> Resim Seç
+                                                    </label>
+                                                    <span class="file-name">Dosya seçilmedi</span>
+                                                </div>
+
+                                            </td>
+                                            <td contenteditable="true" class="editable name">@i.Name</td>
+                                            <td contenteditable="true" class="editable description">@i.Description</td>
+                                                                                        <td contenteditable="true" data-id="slug" class="editable slug">@i.Slug</td>
+
+                                            <td>
+                                                <input type="checkbox" class="toggle-status" @(i.Status ? "checked" : "") />
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-success btn-sm save-category">Kaydet</button>
+                                                <button class="btn btn-danger btn-sm delete-category">Sil</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- DataTables CSS -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+
+<!-- DataTables JS (jQuery'den sonra yüklenmeli) -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        // ✅ Dosya Yükleme Adı Güncelleme
+        $(".file-input").change(function () {
+            var fileName = $(this).prop("files")[0].name;
+            $(this).siblings(".file-name").text(fileName);
+        });
+
+        // ✅ Kategori Güncelleme
+        $(".save-category").click(function () {
+            var row = $(this).closest("tr");
+            var id = row.data("id");
+            var name = row.find(".name").text().trim();
+            var description = row.find(".description").text().trim();
+            var status = row.find(".toggle-status").prop("checked");
+            var fileInput = row.find(".image-upload")[0].files[0]; // Resim dosyası
+            var slug = row.find(".slug").text().trim();
+
+            var formData = new FormData();
+            formData.append("id", id);
+            formData.append("name", name);
+            formData.append("description", description);
+            formData.append("status", status);
+            formData.append("slug", slug);
+            if (fileInput) {
+                formData.append("image", fileInput);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/Admin/UpdateCategoryWithImage",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: "Başarılı!",
+                            text: "Kategori başarıyla güncellendi.",
+                            icon: "success",
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => location.reload());
+                    } else {
+                        Swal.fire("Hata!", "Güncelleme başarısız!", "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Hata Detayı:", xhr.responseText);
+                    Swal.fire("Sunucu Hatası!", "Bir hata oluştu. Lütfen tekrar deneyin.", "error");
+                }
+            });
+        });
+
+        // ✅ Kategori Silme (SweetAlert ile)
+        $(".delete-category").click(function () {
+            var row = $(this).closest("tr");
+            var id = row.data("id");
+
+            Swal.fire({
+                title: "Emin misiniz?",
+                text: "Bu kategoriyi kalıcı olarak silmek istiyor musunuz?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Evet, sil!",
+                cancelButtonText: "İptal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/DeleteCategory",
+                        data: { id: id },
+                        success: function (response) {
+                            if (response.success) {
+                                row.remove();
+                                Swal.fire("Silindi!", "Kategori başarıyla silindi.", "success");
+                            } else {
+                                Swal.fire("Hata!", "Silme işlemi başarısız oldu!", "error");
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("Hata Detayı:", xhr.responseText);
+                            Swal.fire("Sunucu Hatası!", "Bir hata oluştu. Lütfen tekrar deneyin.", "error");
+                        }
+                    });
+                }
+            });
+        });
+
+    });
+
+    $(document).ready(function () {
+        $(".file-input").change(function () {
+            var fileName = $(this).prop("files")[0].name;
+            $(this).siblings(".file-name").text(fileName);
+        });
+    });
+</script>

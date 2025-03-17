@@ -1,0 +1,125 @@
+/* yesil theme */
+.yesil-theme .bg-background,
+.yesil-theme .header.active,
+.yesil-theme .list-group-item.active {
+    background-color: #e4f7ed
+}
+
+.yesil-theme .wrapper {
+    background-color: #e4f7ed;
+    background-image: -moz-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #e4f7ed 100%);
+    background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(250, 250, 250, 1)), color-stop(100%, #e4f7ed));
+    background-image: -webkit-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #e4f7ed 100%);
+    background-image: -o-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #e4f7ed 100%);
+    background-image: -ms-radial-gradient(center, ellipse cover, rgba(250, 250, 250, 1) 0%, #e4f7ed 100%);
+    background-image: radial-gradient(ellipse at center, rgba(250, 250, 250, 1) 0%, #e4f7ed 100%);
+    background-attachment: inherit;
+    background-position: center top;
+    background-size: 100% 100%;
+}
+
+.yesil-theme body,
+.yesil-theme body.sidemenu-open,
+.yesil-theme .bg-template,
+.yesil-theme .btn-default,
+.yesil-theme .custom-control-input:checked ~ .custom-control-label::before,
+.yesil-theme .small-slide .swiper-slide .card:hover,
+.yesil-theme .small-slide .swiper-slide .card:focus,
+.yesil-theme .filter,
+.yesil-theme .chosen-container .chosen-results li.highlighted,
+.yesil-theme .page-item.active .page-link,
+.yesil-theme .nav-pills .nav-link.active,
+.yesil-theme .nav-pills .show > .nav-link,
+.yesil-theme .loader-screen {
+    background-color: #00d169;
+}
+
+.yesil-theme .filter,
+.yesil-theme .filter .form-control,
+.yesil-theme .filter .form-group label,
+.yesil-theme .float-label .chosen-container-multi .chosen-choices,
+.yesil-theme .float-label .chosen-container-multi .chosen-choices li.search-field input[type=text],
+.yesil-theme .filter .chosen-container-multi .chosen-choices li.search-choice,
+.yesil-theme .btn-default,
+.yesil-theme .sidebar,
+.yesil-theme .sidebar .main-menu .list-group-item,
+.yesil-theme .small-slide .swiper-slide .card:hover *,
+.yesil-theme .small-slide .swiper-slide .card:focus * {
+    color: #ffff !important;
+}
+
+.yesil-theme .filter .form-group label {
+    opacity: 0.85;
+}
+
+.yesil-theme .btn-default:hover,
+.yesil-theme .btn-default:focus {
+    color: #ffffff;
+    background-color: #00a352;
+}
+
+.yesil-theme .figure-profile,
+.yesil-theme .form-control:focus,
+.yesil-theme .custom-control-input:focus ~ .custom-control-label::before,
+.yesil-theme .custom-control-input:checked ~ .custom-control-label::before,
+.yesil-theme .float-label .form-control:focus,
+.yesil-theme .page-item.active .page-link,
+.yesil-theme .btn-outline-default {
+    border-color: #00d169
+}
+
+.yesil-theme .filter .form-control:focus,
+.yesil-theme .filter .custom-control-input:focus ~ .custom-control-label::before,
+.yesil-theme .filter .custom-control-input:checked ~ .custom-control-label::before,
+.yesil-theme .filter .float-label .form-control:focus {
+    border-color: #ffffff
+}
+
+.yesil-theme .custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 0.2rem rgba(255, 0, 104, 0.3);
+}
+
+.yesil-theme .btn-light:hover,
+.yesil-theme .btn-light:focus,
+.yesil-theme .btn-light:not(:disabled):not(.disabled).active,
+.yesil-theme .bg-template-light {
+    background-color: #a9e8c9
+}
+
+.yesil-theme .text-template,
+.yesil-theme .btn-link,
+.yesil-theme a,
+.yesil-theme .float-label .form-control:focus + .form-control-label,
+.yesil-theme .btn-light:hover,
+.yesil-theme .btn-light:focus,
+.yesil-theme .btn-light:not(:disabled):not(.disabled).active,
+.yesil-theme .btn.btn-link-default:hover,
+.yesil-theme .btn.btn-link-default:focus,
+.yesil-theme .btn.btn-link-default.active {
+    color: #00d169;
+}
+
+.yesil-theme .bg-warning,
+.yesil-theme .badge-warning {
+    background-color: #FDD835 !important;
+}
+
+.yesil-theme .bg-success,
+.yesil-theme .badge-success {
+    background-color: #5fefa1 !important;
+}
+
+.yesil-theme .bg-orange,
+.yesil-theme .badge-orange {
+    background-color: #ff9133 !important;
+}
+
+.yesil-theme .bg-primary,
+.yesil-theme .badge-primary {
+    background-color: #3fa7ff !important;
+}
+
+.yesil-theme .orange-slice {
+    margin-right: -110px;
+}
+

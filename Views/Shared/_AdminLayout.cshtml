@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Admin, Dashboard, Bootstrap" />
+    <link rel="shortcut icon" sizes="196x196" href="~/assets/images/logo.png">
+    <title>Yönetim Paneli</title>
+
+    <link rel="stylesheet" href="~/libs/bower/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/libs/bower/material-design-iconic-font/dist/css/material-design-iconic-font.css">
+    <!-- build:css ../assets/css/app.min.css -->
+    <link rel="stylesheet" href="~/libs/bower/animate.css/animate.min.css">
+    <link rel="stylesheet" href="~/libs/bower/fullcalendar/dist/fullcalendar.min.css">
+    <link rel="stylesheet" href="~/libs/bower/perfect-scrollbar/css/perfect-scrollbar.css">
+    <link href="~/libs/bower/switchery/dist/switchery.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/assets/css/core.css">
+    <link rel="stylesheet" href="~/assets/css/app.css">
+    <!-- endbuild -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900,300">
+    <script src="~/libs/bower/breakpoints.js/dist/breakpoints.min.js"></script>
+    <script>
+        Breakpoints();
+    </script>
+    <style>
+        @@media (max-width: 768px) {
+            #hexaops-nvbar {
+                display: none !important;
+            }
+
+            #menubar-toggle-btn {
+                display: block !important;
+            }
+        }
+
+        @@media (min-width: 768px) {
+            #menubar-toggle-btn {
+                display: none !important;
+            }
+
+            #hexaops-nvbar {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="menubar-left menubar-unfold menubar-light theme-primary">
+    <!--============= start main area -->
+    <!-- APP NAVBAR ==========-->
+    <nav style="margin-top:-65px;align-content: center;flex-direction: column;" id="app-navbar" class="navbar navbar-inverse navbar-fixed-top primary">
+
+
+        <!-- navbar header -->
+        <div class="navbar-header" style=" border-radius:10px;">
+            <button type="button" id="menubar-toggle-btn" class="navbar-toggle visible-xs-inline-block navbar-toggle-left hamburger hamburger--collapse js-hamburger">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="hamburger-box"><span class="hamburger-inner"></span></span>
+            </button>
+
+            <a style="text-align:center;" id="hexaops-nvbar" class="navbar-brand">
+
+                <span class="brand-name">Susam Sokağı</span>
+            </a>
+        </div><!-- .navbar-header -->
+
+       
+    </nav>
+    <!--========== END app navbar -->
+    <!-- APP ASIDE ==========-->
+    <aside style="margin-top:11px;" id="menubar" class="menubar light">
+        <div class="app-user">
+            <div class="media">
+                <div class="media-left">
+
+                </div>
+                <div class="media-body">
+                    <div class="foldable">
+                        <h5><a href="javascript:void(0)" class="username">Admin</a></h5>
+                        <ul>
+                           
+                        </ul>
+                    </div>
+                </div><!-- .media-body -->
+            </div><!-- .media -->
+        </div><!-- .app-user -->
+
+        <div class="menubar-scroll">
+            <div class="menubar-scroll-inner">
+                <ul class="app-menu">
+                    <li class="">
+                        <a href="/dashboard" class="">
+                            <i class="menu-icon zmdi zmdi-view-dashboard zmdi-hc-lg"></i>
+                            <span class="menu-text">Anasayfa</span>
+                        </a>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi zmdi-layers zmdi-hc-lg"></i>
+                            <span class="menu-text">Kategori Yönetimi</span>
+                            <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="/kategori-ekle"><span class="menu-text">Ekle</span></a></li>
+                            <li><a href="/kategori-listesi"><span class="menu-text">Listele</span></a></li>
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi zmdi-puzzle-piece zmdi-hc-lg"></i>
+                            <span class="menu-text">Ürün Yönetimi</span>
+                            <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="/urun-ekle-"><span class="menu-text">Ekle</span></a></li>
+                            <li><a href="/urun-listesi"><span class="menu-text">Listele</span></a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi zmdi-inbox zmdi-hc-lg"></i>
+                            <span class="menu-text">Slider Yönetimi</span>
+                            <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="/AddSlider"><span class="menu-text">Ekle</span></a></li>
+                            <li><a href="/sliders"><span class="menu-text">Listele</span></a></li>
+
+                        </ul>
+                    </li>
+
+
+
+
+                    <li class="menu-separator"><hr></li>
+
+                    <li>
+                        <a target="_blank" href="/">
+                            <i class="menu-icon zmdi zmdi-arrows zmdi-hc-lg"></i>
+                            <span class="menu-text">Siteye Git</span>
+                        </a>
+                    </li>
+
+                    <li class="has-submenu">
+                        <a href="javascript:void(0)" class="submenu-toggle">
+                            <i class="menu-icon zmdi zmdi-settings zmdi-hc-lg"></i>
+                            <span class="menu-text">Site Ayarları</span>
+                            <i class="menu-caret zmdi zmdi-hc-sm zmdi-chevron-right"></i>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="/Admin/AddSetting"><span class="menu-text">Ekle</span></a></li>
+                            <li><a href="/Admin/Settings"><span class="menu-text">Listele</span></a></li>
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/logout">
+                            <i class="menu-icon zmdi zmdi-block zmdi-hc-lg"></i>
+                            <span class="menu-text">Çıkış Yap</span>
+                        </a>
+                    </li>
+
+                </ul><!-- .app-menu -->
+            </div><!-- .menubar-scroll-inner -->
+        </div><!-- .menubar-scroll -->
+    </aside>
+    <!--========== END app aside -->
+    <!-- navbar search -->
+    <div id="navbar-search" class="navbar-search collapse">
+        <div class="navbar-search-inner">
+            <form action="#">
+                <span class="search-icon"><i class="fa fa-search"></i></span>
+                <input class="search-field" type="search" placeholder="search..." />
+            </form>
+            <button type="button" class="search-close" data-toggle="collapse" data-target="#navbar-search" aria-expanded="false">
+                <i class="fa fa-close"></i>
+            </button>
+        </div>
+        <div class="navbar-search-backdrop" data-toggle="collapse" data-target="#navbar-search" aria-expanded="false"></div>
+    </div><!-- .navbar-search -->
+    <!-- APP MAIN ==========-->
+    <!--========== END app main -->
+    <main id="app-main" class="app-main">
+            @RenderBody()
+
+        <div class="wrap p-t-0">
+            <footer class="app-footer">
+                <div class="clearfix">
+
+                    <div class="copyright pull-left">HEXAOPS | Tüm Hakları Saklıdır. &copy;</div>
+                </div>
+            </footer>
+        </div>
+        <!-- /#app-footer -->
+    </main>
+
+    <!--========== END app main -->
+    <!-- build:js ../assets/js/core.min.js -->
+    <script src="~/libs/bower/jquery/dist/jquery.js"></script>
+    <script src="~/libs/bower/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/libs/bower/jQuery-Storage-API/jquery.storageapi.min.js"></script>
+    <script src="~/libs/bower/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="~/libs/bower/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="~/libs/bower/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
+    <!-- endbuild -->
+    <!-- build:js ../assets/js/app.min.js -->
+    <script src="~/assets/js/library.js"></script>
+    <script src="~/assets/js/plugins.js"></script>
+    <script src="~/assets/js/app.js"></script>
+    <!-- endbuild -->
+    <script src="~/libs/bower/moment/moment.js"></script>
+    <script src="~/libs/bower/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="~/assets/js/fullcalendar.js"></script>
+</body>
+</html>

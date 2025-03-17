@@ -1,0 +1,209 @@
+﻿@using susamQr.Models.Entities
+@model List<Setting>
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .editable {
+        cursor: pointer;
+        border-bottom: 1px dashed #aaa;
+        padding: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .editable:focus {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #007bff;
+            outline: none;
+        }
+
+    .btn-success, .btn-danger {
+        transition: all 0.3s ease-in-out;
+        border-radius: 6px;
+    }
+
+        .btn-success:hover {
+            background-color: #28a745 !important;
+            transform: scale(1.05);
+        }
+
+        .btn-danger:hover {
+            background-color: #dc3545 !important;
+            transform: scale(1.05);
+        }
+
+    /* ✅ Video Önizleme Stili */
+    .video-preview {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        display: block;
+        margin-top: 10px;
+        border-radius: 6px;
+    }
+</style>
+
+<div class="wrap">
+    <section class="app-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <header class="widget-header">
+                        <h4 class="widget-title text-primary">
+                            <i class="fa fa-cogs"></i> Ayar Listesi
+                        </h4>
+                        <a href="/admin/AddSetting" class="btn btn-success">
+                            <i class="fa fa-plus"></i> Yeni Ayar Ekle
+                        </a>
+                    </header>
+                    <hr class="widget-separator">
+                    <div class="widget-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Ayar Adı</th>
+                                        <th>Değer</th>
+                                        <th>Resim & Video</th>
+                                        <th>İşlemler</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var setting in Model)
+                                    {
+                                        <tr data-id="@setting.Id">
+                                            <td class="editable name">@setting.Name</td>
+                                            <td contenteditable="true" class="editable value">@setting.Value</td>
+                                            <td>
+                                                <!-- 📌 Resim Önizleme -->
+                                                <img width="80" src="@setting.Value" class="setting-image"
+                                                     style="display: @(setting.Value.EndsWith(".jpg") || setting.Value.EndsWith(".png") || setting.Value.EndsWith(".jpeg") ? "inline" : "none");" />
+
+                                                <!-- 📌 Video Önizleme -->
+                                                <video class="video-preview" controls
+                                                       style="display: @(setting.Value.EndsWith(".mp4") || setting.Value.EndsWith(".webm") || setting.Value.EndsWith(".ogg") ? "block" : "none");">
+                                                    <source src="@setting.Value" type="video/mp4">
+                                                    Tarayıcınız bu videoyu desteklemiyor.
+                                                </video>
+
+                                                <!-- 📌 Dosya Yükleme Alanı -->
+                                                <div class="custom-file-upload mt-2">
+                                                    <input type="file" class="file-input image-upload" accept="image/*" />
+                                                    <label class="upload-label">
+                                                        <i class="fa fa-upload"></i> Resim Seç
+                                                    </label>
+                                                    <span class="file-name">Dosya seçilmedi</span>
+                                                </div>
+
+                                                <div class="custom-file-upload mt-2">
+                                                    <input type="file" class="file-input video-upload" accept="video/*" />
+                                                    <label class="upload-label">
+                                                        <i class="fa fa-upload"></i> Video Seç
+                                                    </label>
+                                                    <span class="file-name">Dosya seçilmedi</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-success btn-sm save-setting">Kaydet</button>
+                                                <button class="btn btn-danger btn-sm delete-setting">Sil</button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(document).ready(function () {
+        // ✅ Dosya Adı Güncelleme
+        $(".file-input").change(function () {
+            var fileName = $(this).prop("files")[0]?.name || "Dosya seçilmedi";
+            $(this).siblings(".file-name").text(fileName);
+        });
+
+        $(".save-setting").click(function () {
+            var row = $(this).closest("tr");
+            var id = row.data("id");
+            var name = row.find(".name").text().trim();
+            var value = row.find(".value").text().trim();
+            var imageFile = row.find(".image-upload")[0]?.files[0];
+            var videoFile = row.find(".video-upload")[0]?.files[0];
+
+            var formData = new FormData();
+            formData.append("Id", id);
+            formData.append("Name", name);
+            formData.append("Value", value);
+            if (imageFile) {
+                formData.append("ImageFile", imageFile);
+            }
+            if (videoFile) {
+                formData.append("VideoFile", videoFile);
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/Admin/UpdateSetting",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    if (response.success) {
+                        Swal.fire({
+                            title: "Başarılı!",
+                            text: "Ayar başarıyla güncellendi.",
+                            icon: "success",
+                            timer: 2000,
+                            showConfirmButton: false
+                        }).then(() => location.reload());
+                    } else {
+                        Swal.fire("Hata!", "Güncelleme başarısız!", "error");
+                    }
+                }
+            });
+        });
+
+        // ✅ Ayar Silme İşlemi
+        $(".delete-setting").click(function () {
+            var row = $(this).closest("tr");
+            var id = row.data("id");
+
+            Swal.fire({
+                title: "Emin misiniz?",
+                text: "Bu ayarı kalıcı olarak silmek istiyor musunuz?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Evet, sil!",
+                cancelButtonText: "İptal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Admin/DeleteSetting",
+                        data: { id: id },
+                        success: function (response) {
+                            if (response.success) {
+                                row.remove();
+                                Swal.fire("Silindi!", "Ayar başarıyla silindi.", "success");
+                            } else {
+                                Swal.fire("Hata!", "Silme işlemi başarısız oldu!", "error");
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    });
+</script>

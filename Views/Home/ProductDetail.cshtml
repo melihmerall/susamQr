@@ -1,0 +1,44 @@
+﻿@using susamQr.Models.Entities
+@model Product
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="swiper-container product-details" style="background:#fff;border-radius:10px;">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <img src="@Model.ImageUrl" alt="">
+        </div>
+
+
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div></br>
+<h5 class="text-center mt-1">@Model.Name</h5>
+<p class="text-center text-secondary small mb-2">
+    <a href="/kategori/@Model.Category.Slug"><span>@Model.Category.Name</span></a>
+</p>
+    </br>
+<h3 class="text-center text-success font-weight-normal mb-0">
+    ₺ @Model.Price.Value.ToString("N2")
+</h3>
+        </br>
+<div id="accordion">
+    <div class="card mb-1 border-0 shadow-sm">
+        <div class="card-header py-2" id="headingOne">
+            <a href="#" class="" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">
+                Ürün Detayları
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                @Model.Description
+
+                <h5 class="mt-3"></h5>
+                <ul>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

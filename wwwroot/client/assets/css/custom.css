@@ -1,0 +1,778 @@
+@import "theme-pembe.css";
+@import "theme-mavi.css";
+@import "theme-yesil.css";
+@import "theme-mor.css";
+@import "theme-kahve.css";
+@import "theme-gri.css";
+@import "theme-turuncu.css";
+
+a:hover {
+    text-decoration: none !important
+}
+
+
+/***MOBÄ°LE MENU*****/
+
+/* Configuration Parameters */
+@-webkit-keyframes fade-opacity-in {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fade-opacity-in {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.nav {
+    max-height: 0;
+
+    /*margin-top: 43px;*/
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#hamburger-checkbox {
+    display: none;
+}
+
+.hamburger-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: block;
+    cursor: pointer;
+    height: 21px;
+    width: 25px;
+}
+
+.hamburger-icon span {
+    display: block;
+    top: 8px;
+    width: 25px;
+    height: 5px;
+    background-color: #000;
+    position: relative;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+}
+
+.hamburger-icon span:after, .hamburger-icon span:before {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 5px;
+    background-color: #000;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-delay: 0s;
+    transition-delay: 0s;
+}
+
+.hamburger-icon span:before {
+    margin-top: -8px;
+}
+
+.hamburger-icon span:after {
+    margin-top: 8px;
+}
+
+#hamburger-checkbox:checked ~ .nav {
+    width: 300px;
+    max-height: 99999px;
+    -webkit-transition: max-height 2s;
+}
+
+#hamburger-checkbox:checked ~ .hamburger-icon span {
+    background-color: rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#hamburger-checkbox:checked ~ .hamburger-icon span:before, #hamburger-checkbox:checked ~ .hamburger-icon span:after {
+    margin-top: 0px;
+    -webkit-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+}
+
+#hamburger-checkbox:checked ~ .hamburger-icon span:before {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#hamburger-checkbox:checked ~ .hamburger-icon span:after {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.nav__list {
+    width: 100%;
+    top: 50%;
+    transform: translateY(50%);
+}
+
+.nav a, .nav label {
+    display: block;
+    padding: .85rem;
+    color: #fff;
+    /*background-color: rgba(255, 255, 255, 0.25);*/
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+
+}
+
+.nav a:focus, .nav a:hover, .nav label:focus, .nav label:hover {
+    color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(255, 255, 255, 0.75);
+    border-radius: 10px;
+    margin: 0px
+}
+
+.nav label {
+    cursor: pointer;
+}
+
+/**
+ * Styling first level lists items
+ */
+.group-list a, .group-list label {
+
+    padding-left: 2rem;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.group-list a:focus, .group-list a:hover, .group-list label:focus, .group-list label:hover {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/**
+ * Styling second level list items
+ */
+.sub-group-list a, .sub-group-list label {
+    padding-left: 3rem;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.sub-group-list a:focus, .sub-group-list a:hover, .sub-group-list label:focus, .sub-group-list label:hover {
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.55);
+}
+
+/**
+ * Styling third level list items
+ */
+.sub-sub-group-list a, .sub-sub-group-list label {
+    padding-left: 3.2rem;
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.sub-sub-group-list a:focus, .sub-sub-group-list a:hover, .sub-sub-group-list label:focus, .sub-sub-group-list label:hover {
+    background: #333333;
+}
+
+/**
+ * Hide nested lists
+ */
+.group-list, .sub-group-list, .sub-sub-group-list {
+    height: 100%;
+    max-height: 0;
+    overflow: hidden;
+    -webkit-transition: max-height .2s ease-in-out;
+}
+
+.nav__list input[type=checkbox]:checked + label + ul {
+    /* reset the height when checkbox is checked */
+    max-height: 1000px;
+}
+
+label > span {
+    float: right;
+    -webkit-transition: -webkit-transform .2s;
+    transition: -webkit-transform .2s;
+    transition: transform .2s;
+    transition: transform .2s, -webkit-transform .2s;
+}
+
+.nav__list input[type=checkbox]:checked + label > span {
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.mobilTumKat a {
+    color: #fff;
+    text-align: left;
+    padding-left: 0px;
+    background: transparent !important
+}
+
+/***MOBÄ°LE MENU*****/
+
+
+.cat-filter-box label,
+.paySelector,
+.wrapSelectPay .selectMethods {
+    background: 0 0 !important
+}
+
+.formlinefix {
+    display: none !important
+}
+
+.navigation li {
+    list-style: none
+}
+
+.sf-form-container {
+    padding: 20px !important
+}
+
+h1.entry-title {
+    font-size: 18px;
+    padding: 10px;
+    margin-bottom: 10px
+}
+
+@media only screen and (max-width: 767px) {
+    .sf-form-item-fullwidth .sf-form-input,
+    .sf-form-item-fullwidth .sf-form-select,
+    .sf-form-item-fullwidth .sf-form-textarea {
+        width: 90% !important
+    }
+}
+
+.paySelector input {
+    left: 8px !important;
+    visibility: visible !important
+}
+
+.rulesBox input {
+    left: 18px !important;
+    visibility: visible !important
+}
+
+.wrapSelectPay .selectMethods .payMethods .payTitle {
+    margin-left: 30px !important
+}
+
+.payTitle label {
+    color: #000 !important;
+    font-size: 1rem
+}
+
+.wrapSelectPay {
+    border: none !important
+}
+
+#gf_ceptel_alanKodu,
+#gf_evtel_alanKodu,
+#gf_istel_alanKodu {
+    width: 50px !important
+}
+
+#gf_ceptel_tel,
+#gf_evtel_tel,
+#gf_istel_tel {
+    width: 100px !important
+}
+
+#gf_birthdate_ay,
+#gf_birthdate_gun,
+#gf_birthdate_yil {
+    width: 70px !important
+}
+
+.product-name {
+
+    height: 30px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    color: #484848;
+    font-size: 12px;
+    font-family: 'Quicksand', sans-serif;
+    white-space: normal;
+    line-height: 1.35em;
+}
+
+.BreadCrumb {
+    color: #00005c !important;
+    text-transform: none !important;
+    font-size: 12px
+}
+
+.quantity input {
+    padding-left: 5px !important;
+    width: 50px !important;
+    float: left !important;
+    margin-right: 10px !important
+}
+
+.quantity label {
+    float: left !important;
+    font-size: 18px;
+    margin-right: 10px
+}
+
+.sf-form-item-fullwidth {
+    width: 100% !important
+}
+
+.ul-urun-list li {
+    float: left;
+    height: auto;
+    padding: 10px;
+    margin: 0px 5px 10px 0px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    list-style: none;
+    height: 108px;
+    width: 78px;
+}
+
+.aktifBenzer {
+    border: 3px solid #00005c !important;
+}
+
+.featured-slider .slick-dots {
+    top: 150px !important;
+}
+
+.urunSecimTable {
+    border: none !important
+}
+
+.icBaslik {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.sabitFiyat {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    background: #fff;
+    padding-top: 20px;
+    z-index: 9999999;
+    text-align: center;
+    border-top: 3px solid #efefef
+}
+
+.pro-add-to-cart {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 10px
+}
+
+.azalt, .arttir {
+
+    float: left;
+    padding: 10px;
+    background: #efefef;
+    border-radius: 5px;
+}
+
+.numbers-row {
+    margin-left: 20px
+}
+
+.quantity input {
+    float: left;
+    width: 70px;
+    margin-left: 10px;
+    height: 40px;
+    text-align: center;
+
+}
+
+li, .filitreBaslik, .filitreGruplama {
+    list-style: none
+
+}
+
+.faq {
+    background: #fff
+}
+
+.faq li {
+    list-style: none;
+    padding: 5px;
+}
+
+.filtreBaslik {
+    margin: 15px 0px 5px 5px
+}
+
+.collapsible-header {
+    padding: 10px
+}
+
+
+.basket-title {
+    display: none;
+}
+
+.cart-detail {
+    width: 100% !important;
+    border-bottom: 1px solid #efefef;
+}
+
+.cart-detail img {
+    display: block !important
+}
+
+.cart-price {
+    width: 100% !important;
+}
+
+.cart-detail .lightbox {
+    display: block !important
+}
+
+.sepet-satir-sil {
+    position: absolute;
+    right: 20px;
+    top: 60%;
+}
+
+.basket-item.row1 {
+
+    height: auto !important
+}
+
+.basket-item.row2 {
+
+    height: auto !important
+}
+
+.basket-item .cart-total-price {
+    width: 120px !important;
+    font-size: 16px !important;
+    margin-top: 30px
+}
+
+.urun-var-resim {
+    height: auto !important
+}
+
+#urunResimListContainer li {
+    list-style-type: none;
+}
+
+.zoomContainer {
+    display: none !important
+}
+
+
+.product-fiyatBolum {
+    min-width: 122px;
+    display: inline-block;
+    width: auto;
+    height: auto;
+}
+
+.fiyatBolum-yuzde {
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -ms-webkit-radius: 2px;
+
+    width: 32px;
+    height: 32px;
+    padding: 4px;
+    background-color: #fc0000;
+    color: #fff;
+    text-align: center;
+    float: left;
+
+    font-size: 11px;
+
+    font-weight: bold
+}
+
+
+.fiyatBolum-fiyat {
+    height: auto;
+    padding-left: 4px;
+    width: auto;
+}
+
+.fiyat-fiyatEski {
+    display: block;
+    color: #919191;
+    font-size: 11px;
+    text-decoration: line-through;
+    height: 10px;
+    text-align: left;
+    margin: -5px 0px 5px 45px;
+}
+
+.fiyat-fiyatYeni {
+    padding-top: 2px;
+    display: block;
+    color: #484848;
+    font-size: 13px;
+    font-weight: bold
+}
+
+.dugmeSepet {
+    width: 100%;
+    background: #fff;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -o-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -ms-webkit-radius: 2px;
+    padding: 5px;
+    border: 1px solid #484848;
+    color: #484848;
+    margin: 15px 0px;
+    font-size: 12px
+}
+
+.dugmeSepet a {
+    color: #484848
+}
+
+#twbsPagination > li {
+    display: inline-block;
+}
+
+#twbsPagination > .active > a {
+    background: none !important;
+    border: none !important
+}
+
+.paginatoin-area {
+    text-align: center
+}
+
+#orderBy {
+    border: medium none;
+    border-radius: 3px;
+    width: 185px;
+    padding: 8px;
+    border: 0px solid #e4e4e4;
+    margin-left: 10px;
+    width: 100%;
+    height: 50px !important;
+    background: #fff !important;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.basket-item {
+    margin-bottom: 25px;
+    border-radius: 10px
+}
+
+.basket-item .cart-total-price {
+    height: 50px;
+    line-height: 50px;
+    margin-top: 15px
+}
+
+.sepet-satir-sil a:before {
+    font-size: 22px !important;
+    color: #ff8100
+}
+
+.cart-detail .propicer img {
+    border: 1px solid #efefef;
+    border-radius: 10px;
+    padding: 5px;
+    background: #fff;
+}
+
+.basket-left {
+    border: 0px
+}
+
+.sp-azalt {
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    background: #ccc
+
+}
+
+.sp-arttir {
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background: #ccc
+}
+
+.sp-input-group {
+    border: 0px
+}
+
+.cart-info {
+    height: 80px;
+    overflow: hidden
+}
+
+.basket-wrap {
+    visibility: visible !important
+}
+
+.basketSayi {
+    position: absolute;
+    bottom: 35px;
+    left: 40px
+}
+
+form {
+    width: 100%
+}
+
+.mt-2 li a {
+    color: #fff
+}
+
+#filterContainer ul {
+    padding: 0px
+}
+
+#twbsPagination > .active > a {
+    color: #ccc
+}
+
+
+.demo-vitrin,
+.swiper-init {
+    height: 250px;
+    margin-top: 30px;
+
+}
+
+@media only screen and (max-width: 600px) {
+    .demo-vitrin, .swiper-init {
+        height: 175px;
+        margin-top: 30px;
+    }
+}
+
+.swiper-slide {
+    border-radius: 10px;
+}
+
+.vitrinBaslik {
+    padding: 20px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 2em;
+    float: right;
+    clear: both;
+}
+
+.vitrinAciklama {
+    padding: 20px;
+    color: #fff;
+    font-size: 1em;
+    float: right;
+    clear: both;
+    background: rgba(0, 0, 0, 0.5);
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-bottom-left-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-bottomleft: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+
+}
+
+.card-body img {
+    height: auto !important;
+    border-radius: 5px;
+    /*align center*/
+}
+
+.hero-video video {
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    object-fit: cover;
+}
+
+.index-back {
+    z-index: -1;
+}
+
+.absolute {
+    position: absolute;
+
+}
+
+.px150 {
+    height:  150px;
+}
+
+
+.anan {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+
+.anan iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+.anan video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: -1;
+}
+.bottomshadow {
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+
+.card-title {
+    text-transform: uppercase;
+    font-size: 1em;
+}
