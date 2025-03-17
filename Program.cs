@@ -38,7 +38,8 @@ app.Use(async (context, next) =>
 	var path = context.Request.Path.Value;
 
 	// Eğer istek /client/assets/css veya /client/assets/js klasörüne gidiyorsa özel işlem yap
-	if (path != null && (path.StartsWith("/client/assets/css/") || path.StartsWith("/client/assets/js/")))
+	if (path != null && (path.StartsWith("/client/assets/css/") || path.StartsWith("/client/assets/js/")
+	|| path.StartsWith("/assets/css/") || path.StartsWith("/assets/js/")))
 	{
 		var referer = context.Request.Headers["Referer"].ToString();
 
