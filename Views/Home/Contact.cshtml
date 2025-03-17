@@ -1,47 +1,68 @@
 ﻿@{
-    ViewData["Title"] = "";
+    ViewData["Title"] = "İletişim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="text-center mt-1">Susam Sokağı</h4>
-                    <h5 class="text-center mt-1"> </h5>
 
+<div class="views">
+    <div class="view view-main">
+        <div class="page">
+            <!-- Navbar -->
+            <div class="navbar navbar-page">
+                <div class="navbar-inner sliding">
+                    <div class="left">
+                        <a href="/main/" class="link back">
+                            <i class="ti-arrow-left"></i>
+                        </a>
+                    </div>
+                    <div class="title">
+                        İletişim
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <p class="text-justify"></p>
+            </div>
+
+            <!-- Sayfa İçeriği -->
+            <div class="page-content">
+                <div class="contact segments-page">
+                    <div class="container" style="margin-top:80px;">
+                        <div class="row">
+                            <!-- Görsel Alanı -->
+                            <div class="col-100" style="margin-bottom:20px; text-align: -webkit-center;">
+                                <div class="content-image">
+                                    <img src="@ViewData["slider-kapak"]" alt="İletişim" class="contact-img">
+                                </div>
+                            </div>
+
+                            <!-- İletişim Bilgileri -->
+                            <div class="col-100">
+                                <div class="contact-card">
+                                    <ul class="contact-info">
+                                        <li>
+                                            <i class="fa fa-map-marker contact-icon"></i>
+                                            <span>Avşar Kampüsü, Kahramanmaraş, Türkiye</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-phone contact-icon"></i>
+                                            <span>+90 544 278 36 49</span>
+                                        </li>
+                                    </ul>
+                                    <div class="col-20">
+                                        <a href="#" id="whatsapp-link" target="_blank" class="link icon-link whatsapp">
+                                            <i class="fa-brands fa-whatsapp"></i>
+                                        </a>
+                                    </div>
+                                    <br />
+                                    <div class="col-20">
+                                        <a href="#" id="instagram-link" class="link icon-link">
+                                            <i class="ti-instagram"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                          
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="d-flex justify-content-center">
-                        <ul class="list-group list-group-horizontal-lg">
-                            <li class="list-item">
-                                <i class="fa fa-map-marker m-3"></i> Avşar Kampüsü , Kahramanmaraş, Türkiye
-                            </li>
-                            <li class="list-item"><i class="fa fa-phone m-3"></i> +90 544 278 36 49</li>
-                        </ul>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <ul class="list-group list-group-horizontal">
-                            <li class="list-item">
-                                <a href="@ViewData["instagramLink"]" target="_blank">
-                                    <i class="fa fa-instagram fa-2x m-3"></i>
-                                </a>
-                            </li>
-                            <li class="list-item">
-                                <a href="https://wa.me/@ViewData["WptelefonNo"]" target="_blank">
-                                    <i class="fa fa-whatsapp fa-2x m-3"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+                <!-- End Contact -->
             </div>
         </div>
     </div>

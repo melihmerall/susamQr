@@ -1,6 +1,5 @@
 ﻿@using susamQr.Models.Entities
-
-@model Category
+@model List<Category>
 @{
     ViewData["Title"] = "";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,36 +10,49 @@
             <div class="navbar navbar-page">
                 <div class="navbar-inner sliding">
                     <div class="left">
-                        <a href="/kategoriler" class="link back">
+                        <a href="/main" class="link back">
                             <i class="ti-arrow-left"></i>
                         </a>
                     </div>
-
                     <div class="title">
-                        @Model.Name
+                        Kategoriler & Ürünler
                     </div>
                 </div>
             </div>
             <div class="page-content">
-                <!-- menu -->
-                <div class="menu segments-page">
-                    <div class="container">
-                        <div class="row">
-                            @foreach(var i in Model.Products){
-                                <div class="col-40" style="margin-bottom:10px;">
-                                    <div class="content">
-                                        <a href="/urun/@i.Slug/"><img src="@i.ImageUrl" alt=""></a>
-                                        <div class="text">
-                                            <a href="/urun/@i.Slug/"><h4>@i.Name</h4></a>
-                                            <p class="price">@i.Price.Value.ToString("N2")₺</p>
+                <!-- menu category -->
+                <div class="menu-category segments-page">
+                    @foreach (var category in (List<Category>)ViewData["categories"])
+                    {
+                        <div class="wrap-content">
+                            <div class="section-title">
+                                <h3>
+                                    @category.Name
+                                    <a href="/kategori/@category.Slug/" class="see-all-link">Hepsini Gör</a>
+                                </h3>
+                            </div>
+                            <div data-space-between="10" data-slides-per-view="auto" class="swiper-container swiper-init demo-swiper-auto">
+                                <div class="swiper-wrapper">
+                                    @foreach(var i in category.Products){
+                                        <div class="swiper-slide">
+                                            <div class="content">
+                                                <a href="/urun/@i.Slug/"><img src="@i.ImageUrl" alt=""></a>
+                                                <div class="text">
+                                                    <a href="/urun/@i.Slug/"><h4>@i.Name</h4></a>
+                                                    <p class="price">@i.Price.Value.ToString("N2")₺</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    }
+                                 
                                 </div>
-                            }
-                          
-
+                            </div>
                         </div>
-                    </div>
+
+                    }
+
+
+
                 </div>
                 <div class="navbar navbar-home">
                     <div class="navbar-inner">
@@ -57,7 +69,6 @@
                                     </a>
                                 </div>
 
-
                                 <div class="col-20">
                                     <a href="#" id="whatsapp-link" target="_blank" class="link icon-link whatsapp">
                                         <i class="fa-brands fa-whatsapp"></i>
@@ -72,8 +83,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- end menu -->
+                <!-- end menu category -->
             </div>
         </div>
+
     </div>
 </div>

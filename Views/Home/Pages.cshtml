@@ -1,0 +1,177 @@
+﻿@using susamQr.Models.Entities
+<div class="views">
+    <div class="view view-main">
+        <div class="page">
+            <div class="navbar navbar-page">
+                <div class="navbar-inner sliding">
+                    <div class="left">
+                        <a target="_self" href="/main/" class="link back">
+                            <i class="ti-arrow-left"></i>
+                        </a>
+                    </div>
+
+                    <div class="title">
+                        Hızlı Menü
+                    </div>
+                </div>
+            </div>
+            <div class="page-content">
+                <!-- pages -->
+                <div class="pages segments-page">
+                    <div class="container">
+                        <div class="content">
+                            <ul>
+                                <li>
+                                    <a href="/main/" class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <i class="ti-shift-right"></i>
+                                                <span>Anasayfa</span>
+                                                <i class="ti-angle-right"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <h5>Kategoriler</h5>
+                                <hr />
+                                <li>
+                                    <a href="/kategoriler/" class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <i class="ti-control-forward"></i>
+                                                <span>Tüm Kategoriler</span>
+                                                <i class="ti-angle-right"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                @foreach (var category in (List<Category>)ViewData["categories"])
+                                {
+                                <li>
+                                    <a href="/kategori/@category.Slug/" class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <i class="ti-control-forward"></i>
+                                                <span>@category.Name</span>
+                                                <i class="ti-angle-right"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                }
+                                <hr />
+                                <li>
+                                    <a href="/iletisim/" class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <i class="ti-shift-right"></i>
+                                                <span>İletişim</span>
+                                                <i class="ti-angle-right"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" id="location" class="item-content item-link">
+                                        <div class="item-inner">
+                                            <div class="item-title">
+                                                <i class="ti-location-pin"></i>
+                                                <span>Konum</span>
+                                                <i class="ti-angle-right"></i>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar navbar-home">
+                    <div class="navbar-inner">
+                        <div class="block">
+                            <div class="row text-center">
+                                <div class="col-20">
+                                    <a href="/secim/" class="link icon-link">
+                                        <i class="ti-align-left"></i>
+                                    </a>
+                                </div>
+                                <div class="col-20">
+                                    <a href="/kategoriler/" class="link icon-link">
+                                        <i class="ti-layers"></i>
+                                    </a>
+                                </div>
+
+                                <div class="col-20">
+                                    <a href="#" id="whatsapp-link" target="_blank" class="link icon-link whatsapp">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                                <div class="col-20">
+                                    <a href="#" id="instagram-link" class="link icon-link">
+                                        <i class="ti-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end pages -->
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var whatsappLink = document.getElementById("whatsapp-link");
+
+		if (whatsappLink) {
+			whatsappLink.addEventListener("click", function (event) {
+				event.preventDefault(); // Varsayılan tıklama olayını engelle
+
+				var rawPhoneNumber = "@ViewData["WptelefonNo"]"; // Razor ile ViewData'dan al
+				var phoneNumber = decodeURIComponent(rawPhoneNumber) // HTML entity'yi çöz
+					.replace(/\D/g, '') // Sadece rakamları bırak
+					.replace(/^0+/, ''); // Başındaki gereksiz sıfırları kaldır
+
+				if (phoneNumber) {
+					var waLink = "https://wa.me/" + phoneNumber;
+					window.open(waLink, "_blank"); // Yeni sekmede aç
+				} 
+			});
+		}
+	});
+	document.addEventListener("DOMContentLoaded", function () {
+		var instagramLink = document.getElementById("instagram-link");
+
+		if (instagramLink) {
+			instagramLink.addEventListener("click", function (event) {
+				event.preventDefault(); // Varsayılan tıklamayı engelle
+
+				var instaUrl = "@ViewData["instagramLink"]"; // Razor ile URL'yi al
+				instaUrl = decodeURIComponent(instaUrl).trim(); // HTML entity çözüp boşlukları temizle
+
+				if (instaUrl && instaUrl.startsWith("http")) {
+					window.open(instaUrl, "_blank"); // Yeni sekmede aç
+				} 
+			});
+		}
+    });
+    	document.addEventListener("DOMContentLoaded", function () {
+		var instagramLink = document.getElementById("location");
+
+		if (instagramLink) {
+			instagramLink.addEventListener("click", function (event) {
+				event.preventDefault(); // Varsayılan tıklamayı engelle
+
+				var location = "@ViewData["googleMapUrl"]"; // Razor ile URL'yi al
+                location = decodeURIComponent(location).trim(); // HTML entity çözüp boşlukları temizle
+
+                if (location && location.startsWith("http")) {
+                    window.open(location, "_blank"); // Yeni sekmede aç
+				} 
+			});
+		}
+    });
+</script>

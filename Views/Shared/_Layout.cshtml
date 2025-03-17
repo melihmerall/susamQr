@@ -1,9 +1,13 @@
 ﻿@using susamQr.Models.Entities
 
 <!doctype html>
-<html lang="tr" class="yesil-theme">
+<html lang="tr">
 <head>
-
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
     <!-- Seo Meta Bilgileri -->
     <title>@ViewData["og:title"]</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover, user-scalable=no">
@@ -11,485 +15,38 @@
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta name="description" content="@ViewData["SiteDesc"]">
     <meta name="keywords" content="@ViewData["SiteKeywords"]">
-    <!-- Seo Meta Bilgileri -->
-    <!-- Og Meta Bilgileri -->
     <meta property="og:title" content="@ViewData["og:title"]" />
-    <meta property="og:image" content="https://susamsokagi.siriusmenu.com.tr/userfiles/images/c609bf35-672d-4e12-af58-c43c8cd2a61e.png" />
+    <meta property="og:image" content="/@ViewData["SiteLogo"]" />
     <meta property="og:site_name" content="@ViewData["og:site_name"]" />
     <meta property="og:url" content="/" />
-    <!-- Og meta bilgileri -->
-
     <meta charset="utf-8">
     <!-- Material design icons CSS -->
-    <link rel="stylesheet" href="~/client/assets/css/material-icons.css">
-    <!-- Roboto fonts CSS -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link href="~/client/assets/css/font-awesome.min.css" rel="stylesheet">
-    <!-- Bootstrap core CSS -->
-    <link href="~/client/assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Swiper CSS -->
-    <link href="~/client/assets/css/swiper.min.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="~/client/assets/css/style.css" rel="stylesheet">
-    <link href="~/client/assets/css/custom.css" rel="stylesheet">
-    <link href="~/client/assets/css/ozellikler.css" rel="stylesheet">
-    <link href="~/client/assets/js/pnotify.custom.css" rel="stylesheet">
-    <!-- jquery --->
-    <script src="~/client/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="~/client/assets/js/pnotify.custom.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-<style>
-    /* 🔹 Arama Sonuçlarını Mobil için Optimize Et */
-    #searchResults {
-        position: absolute;
-        width: 100%;
-        max-width: 100%;
-        left: 0;
-        background: #fff;
-        border-radius: 6px;
-        z-index: 1000;
-        display: none;
-        border: 1px solid #ddd;
-        overflow: hidden;
-        max-height: 400px; /* Çok fazla ürün olursa taşmayı önler */
-        overflow-y: auto;
-    }
-
-    /* 🔹 Her Ürün Satırı */
-    .search-item {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        border-bottom: 1px solid #eee;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-
-    .search-item:last-child {
-        border-bottom: none;
-    }
-
-    .search-item:hover {
-        background: #f8f9fa;
-    }
-
-    /* 🔹 Ürün Resimleri (Mobilde Daha Küçük) */
-    .search-item img {
-        width: 45px; /* Mobilde biraz daha küçük */
-        height: 45px;
-        border-radius: 4px;
-        margin-right: 8px;
-        object-fit: cover;
-    }
-
-    /* 🔹 Metin İçeriği */
-    .search-item a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 600;
-        font-size: 14px; /* Mobilde çok büyük olmasın */
-    }
-
-    /* 🔹 Fiyat Bilgisi */
-    .search-item small {
-        font-size: 12px;
-        color: #28a745;
-        font-weight: bold;
-    }
-
-    /* 📱 **Mobil Düzenlemeleri** */
-    @@media (max-width: 768px) {
-        #searchResults {
-            width: 95%;
-            left: 2.5%;
-            font-size: 14px;
-        }
-
-        .search-item {
-            padding: 8px;
-            font-size: 13px;
-        }
-
-        .search-item img {
-            width: 40px;
-            height: 40px;
-            margin-right: 5px;
-        }
-
-        .search-item a {
-            font-size: 13px;
-        }
-    }
-</style>
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="~/client/assets/css/style.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Prompt:300,400,500,600,700,800,900|Playfair+Display:400,700,900" rel="stylesheet">
 </head>
 <body>
-    <div class="row no-gutters vh-100 loader-screen">
-        <div class="anan">
-            <video autoplay muted loop playsinline id="backgroundvideo" width="center" height="center" src="@ViewData["mainVideo"]"></video>
-        </div>
+	<div id="app">
+		<!-- Açılış Videosu Modalı -->
+		<div id="intro-modal" class="modal" style="display:none;">
+			<video id="intro-video" autoplay muted playsinline>
+				<source src="@ViewData["mainVideo"]" type="video/mp4">
+			</video>
+			<button id="skip-intro" class="intro-btn">Menüyü Gör</button>
+		</div>
 
+		@RenderBody()
+	</div>
 
+	<!-- Framework7 ve Özel JS Dosyaları -->
+	<script src="~/client/assets/js/framework7.js"></script>
+	<script src="~/client/assets/js/routes.js"></script>
+	<script src="~/client/assets/js/app.js"></script>
+	<!-- Açılış Videosu Stilleri -->
+	<style>
 
-        <div class="col align-self-center text-white text-center">
-            <img height="100px" src="@ViewData["SiteLogo"]" alt="logo">
-            <br>
-            <button class="btn btn-outline-dark loader-btn mt-4 btn-dark" type="button">
-                Menü İçin Dokun
-            </button>
-            <div class="row d-flex justify-content-center">
-                <a href="@ViewData["instagramLink"]"
-                   class="mt-4 mr-3 ml-3" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 256 256" version="1.1" preserveAspectRatio="xMidYMid">
-                        <g>
-                            <path class="insta" d="M127.999746,23.06353 C162.177385,23.06353 166.225393,23.1936027 179.722476,23.8094161 C192.20235,24.3789926 198.979853,26.4642218 203.490736,28.2166477 C209.464938,30.5386501 213.729395,33.3128586 218.208268,37.7917319 C222.687141,42.2706052 225.46135,46.5350617 227.782844,52.5092638 C229.535778,57.0201472 231.621007,63.7976504 232.190584,76.277016 C232.806397,89.7746075 232.93647,93.8226147 232.93647,128.000254 C232.93647,162.177893 232.806397,166.225901 232.190584,179.722984 C231.621007,192.202858 229.535778,198.980361 227.782844,203.491244 C225.46135,209.465446 222.687141,213.729903 218.208268,218.208776 C213.729395,222.687649 209.464938,225.461858 203.490736,227.783352 C198.979853,229.536286 192.20235,231.621516 179.722476,232.191092 C166.227425,232.806905 162.179418,232.936978 127.999746,232.936978 C93.8200742,232.936978 89.772067,232.806905 76.277016,232.191092 C63.7971424,231.621516 57.0196391,229.536286 52.5092638,227.783352 C46.5345536,225.461858 42.2700971,222.687649 37.7912238,218.208776 C33.3123505,213.729903 30.538142,209.465446 28.2166477,203.491244 C26.4637138,198.980361 24.3784845,192.202858 23.808908,179.723492 C23.1930946,166.225901 23.0630219,162.177893 23.0630219,128.000254 C23.0630219,93.8226147 23.1930946,89.7746075 23.808908,76.2775241 C24.3784845,63.7976504 26.4637138,57.0201472 28.2166477,52.5092638 C30.538142,46.5350617 33.3123505,42.2706052 37.7912238,37.7917319 C42.2700971,33.3128586 46.5345536,30.5386501 52.5092638,28.2166477 C57.0196391,26.4642218 63.7971424,24.3789926 76.2765079,23.8094161 C89.7740994,23.1936027 93.8221066,23.06353 127.999746,23.06353 M127.999746,0 C93.2367791,0 88.8783247,0.147348072 75.2257637,0.770274749 C61.601148,1.39218523 52.2968794,3.55566141 44.1546281,6.72008828 C35.7374966,9.99121548 28.5992446,14.3679613 21.4833489,21.483857 C14.3674532,28.5997527 9.99070739,35.7380046 6.71958019,44.1551362 C3.55515331,52.2973875 1.39167714,61.6016561 0.769766653,75.2262718 C0.146839975,88.8783247 0,93.2372872 0,128.000254 C0,162.763221 0.146839975,167.122183 0.769766653,180.774236 C1.39167714,194.398852 3.55515331,203.703121 6.71958019,211.845372 C9.99070739,220.261995 14.3674532,227.400755 21.4833489,234.516651 C28.5992446,241.632547 35.7374966,246.009293 44.1546281,249.28042 C52.2968794,252.444847 61.601148,254.608323 75.2257637,255.230233 C88.8783247,255.85316 93.2367791,256 127.999746,256 C162.762713,256 167.121675,255.85316 180.773728,255.230233 C194.398344,254.608323 203.702613,252.444847 211.844864,249.28042 C220.261995,246.009293 227.400247,241.632547 234.516143,234.516651 C241.632039,227.400755 246.008785,220.262503 249.279912,211.845372 C252.444339,203.703121 254.607815,194.398852 255.229725,180.774236 C255.852652,167.122183 256,162.763221 256,128.000254 C256,93.2372872 255.852652,88.8783247 255.229725,75.2262718 C254.607815,61.6016561 252.444339,52.2973875 249.279912,44.1551362 C246.008785,35.7380046 241.632039,28.5997527 234.516143,21.483857 C227.400247,14.3679613 220.261995,9.99121548 211.844864,6.72008828 C203.702613,3.55566141 194.398344,1.39218523 180.773728,0.770274749 C167.121675,0.147348072 162.762713,0 127.999746,0 Z M127.999746,62.2703115 C91.698262,62.2703115 62.2698034,91.69877 62.2698034,128.000254 C62.2698034,164.301738 91.698262,193.730197 127.999746,193.730197 C164.30123,193.730197 193.729689,164.301738 193.729689,128.000254 C193.729689,91.69877 164.30123,62.2703115 127.999746,62.2703115 Z M127.999746,170.667175 C104.435741,170.667175 85.3328252,151.564259 85.3328252,128.000254 C85.3328252,104.436249 104.435741,85.3333333 127.999746,85.3333333 C151.563751,85.3333333 170.666667,104.436249 170.666667,128.000254 C170.666667,151.564259 151.563751,170.667175 127.999746,170.667175 Z M211.686338,59.6734287 C211.686338,68.1566129 204.809755,75.0337031 196.326571,75.0337031 C187.843387,75.0337031 180.966297,68.1566129 180.966297,59.6734287 C180.966297,51.1902445 187.843387,44.3136624 196.326571,44.3136624 C204.809755,44.3136624 211.686338,51.1902445 211.686338,59.6734287 Z" fill="#0A0A08" />
-                        </g>
-                        <style type="text/css">
-                            .insta {
-                                fill: #fff;
-                            }
-                        </style>
-                    </svg>
-                </a>
-                <a href="https://wa.me/@ViewData["WptelefonNo"]"
-                   class="mt-4 mr-3 ml-3" target="_blank">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path fill="#fff" d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </div>
-    <script>
-        if (window.location.pathname === '/') {
-            $('.loader-btn').click(function () {
-                $('.loader-screen').fadeOut(1000);
-            });
-        } else {
-            $('.loader-screen').fadeOut(700);
-
-        }
-        document.onload = function () {
-            document.getElementById('backgroundvideo').play();
-        }
-    </script>
-
-    <div class="sidebar">
-        <div class="row mx-0 mt-1">
-            <div class="col">
-                <div class="list-group main-menu">
-                    <nav class="nav" style="flex-wrap: inherit !important;" role="navigation">
-                        <ul class="nav__list">
-                            @if (ViewData["categories"] is List<Category> categories)
-                            {
-                                @foreach (var category in categories)
-                                {
-                                    <li class="direkKat">
-                                        <a href="/kategori/@category.Slug">@category.Name.ToUpper()</a>
-                                    </li>
-                                }
-                            }
-                           
-                            <li class="direkKat mt-1">
-                                <a href="/iletisim" class="btn btn-primary btn-block">
-                                    <i class="fa fa-phone"></i> İletişim
-                                </a>
-                            </li>
-                            <li class="direkKat mt-1">
-                                <a href="whatsapp://send?text=" data-action="share/whatsapp/share"
-                                   class="btn btn-success btn-block"><i class="fa fa-whatsapp"></i> Whatsapp ile Paylaş</a>
-                            </li>
-                            <li class="direkKat mt-1">
-                                <a href="whatsapp://send?text=Susam+Soka%C4%9F%C4%B1%0Ahttps%3A%2F%2Fwww.google.com%2Fmaps%2Fembed%3Fpb%3D%211m18%211m12%211m3%211d3172.880547821%212d36.930868315258%213d37.584144979798%212m3%211f0%212f0%213f0%213m2%211i1024%212i768%214f13.1%213m3%211m2%211s0x14c9a0a0a0a0a0a0%253A0x9c9c9c9c9c9c9c9c%212sSiriusByte%215e0%213m2%211str%212str%0A" data-action="share/whatsapp/share"
-                                   class="btn btn-warning btn-block"><i class="fa fa-map-marker"></i> Konum Paylaş</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-
-    <script>
-        $(window).on('load', function () {
-            new Swiper('.small-slide', {
-                slidesPerView: 'auto',
-                spaceBetween: 0,
-            });
-
-
-            new Swiper('.news-slide', {
-                slidesPerView: 5,
-                spaceBetween: 0,
-                pagination: {
-                    el: '.swiper-pagination',
-                },
-                breakpoints: {
-                    1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 0,
-                    },
-                    768: {
-                        slidesPerView: 3,
-                        spaceBetween: 0,
-                    },
-                    640: {
-                        slidesPerView: 2,
-                        spaceBetween: 0,
-                    },
-                    320: {
-                        slidesPerView: 2,
-                        spaceBetween: 0,
-                    }
-                }
-            });
-
-            setTimeout(function () {
-                $('.notification').addClass('active');
-                setTimeout(function () {
-                    $('.notification').removeClass('active');
-                }, 3500);
-            }, 500);
-            $('.closenotification').on('click', function () {
-                $(this).closest('.notification').removeClass('active')
-            });
-        });
-    </script>
-    <script>
-        var swiper = new Swiper('.swiper-containerVitrin', {
-            effect: 'cube',
-            grabCursor: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            cubeEffect: {
-                shadow: true,
-                slideShadows: true,
-                shadowOffset: 20,
-                shadowScale: 0.94,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-            },
-        });
-
-    </script>
-
-    <script>
-        if (window.location.pathname === '/') {
-            $('.loader-btn').click(function () {
-                $('.loader-screen').fadeOut(1000);
-            });
-        } else {
-            $('.loader-screen').fadeOut(700); 4tu8 - _K)
-
-        }
-        document.onload = function () {
-            4tu8 - _K)
-            document.getElementById('backgroundvideo').play();
-        }
-    </script>
-    <div class="wrapper">
-        <div class="header">
-            <div class="row no-gutters">
-                <div class="col-auto">
-                    <button class="btn btn-link text-dark menu-btn">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </div>
-                <div class="col text-center mt-2">
-                    <a href="/" class="mr-5">
-                        <img src="@ViewData["SiteLogo"]" alt="" class="logo" height="40px">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div style="clear:both;height:50px"></div>
-            <form action="javascript:void(0);">
-                <label for="search"></label>
-                <input type="text" name="q" id="search" class="form-control form-control-lg search my-3"
-                       placeholder="Ürün ara..">
-            </form>
-            <div id="searchResults" class="list-group shadow-sm"></div>
-
-            @RenderBody()
-            <div class="foot text-center">
-                Copyright &copy; 2025 <a href="https://hexaops.net/" target="_blank">Hexaops</a> 
-                <br>
-                <a href="https://hexasops.net/" target="_blank">
-                    
-                </a>
-            </div>
-            <div class="footer">
-                <div class="no-gutters">
-                    <div class="col-auto mx-auto">
-                        <div class="row no-gutters justify-content-center">
-                            <div class="col-auto">
-                                <a href="/" class="btn btn-link-default active">
-                                    <i class="material-icons">home</i>
-                                </a>
-                            </div>
-                            <div class="col-auto">
-                                <a href="@ViewData["googleMapUrl"]" target="_blank"
-                                   class="btn btn-link-default active">
-                                    <i class="fa fa-map-marker"></i>
-                                </a>
-                            </div>
-                            <div class="col-auto">
-                                <button class="btn btn-default shadow centerbutton menu-btn">
-                                    <i class="fa fa-cutlery"></i>
-                                </button>
-                            </div>
-                            <div class="col-auto">
-                                <a href="@ViewData["instagramLink"]" target="_blank"
-                                   class="btn btn-link-default active">
-                                    <img src="https://susamsokagi.siriusmenu.com.tr/assets/images/instagram.svg"
-                                         style="filter: invert(1);"
-                                         alt="instagram" width="30px">
-                                </a>
-                            </div>
-                            <div class="col-auto">
-                                <a href="https://wa.me/@ViewData["WptelefonNo"]" target="_blank"
-                                   class="btn btn-link-default active">
-                                    <img src="https://susamsokagi.siriusmenu.com.tr/assets/images/whatsapp.svg"
-                                         style="filter: invert(1);"
-                                         alt="whatsapp" width="30px">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- jquery, popper and bootstrap js -->
-    <script src="~/client/assets/js/popper.min.js"></script>
-    <script src="~/client/assets/bootstrap-4.3.1/js/bootstrap.min.js"></script>
-    <!-- swiper js -->
-    <script src="~/client/assets/js/swiper.min.js"></script>
-    <!-- template custom js -->
-    <script src="~/client/assets/js/main.js"></script>
-    <script>
-        $(window).on('load', function () {
-            new Swiper('.small-slide', {
-                slidesPerView: 'auto',
-                spaceBetween: 0,
-            });
-
-
-            new Swiper('.news-slide', {
-                slidesPerView: 5,
-                spaceBetween: 0,
-                pagination: {
-                    el: '.swiper-pagination',
-                },
-                breakpoints: {
-                    1024: {
-                        slidesPerView: 4,
-                        spaceBetween: 0,
-                    },
-                    768: {
-                        slidesPerView: 3,
-                        spaceBetween: 0,
-                    },
-                    640: {
-                        slidesPerView: 2,
-                        spaceBetween: 0,
-                    },
-                    320: {
-                        slidesPerView: 2,
-                        spaceBetween: 0,
-                    }
-                }
-            });
-
-            setTimeout(function () {
-                $('.notification').addClass('active');
-                setTimeout(function () {
-                    $('.notification').removeClass('active');
-                }, 3500);
-            }, 500);
-            $('.closenotification').on('click', function () {
-                $(this).closest('.notification').removeClass('active')
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $("#search").on("keyup", function () {
-                var query = $(this).val().trim();
-
-                if (query.length < 3) {
-                    $("#searchResults").hide();
-                    return;
-                }
-
-                $.ajax({
-                    url: "/Home/Search",
-                    type: "GET",
-                    data: { q: query },
-                    success: function (data) {
-                        if (data.length > 0) {
-                            var html = "";
-                            data.forEach(function (product) {
-                                html += `
-                                        <div class="search-item">
-                                            <a href="/urun/${product.slug}">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="${product.imageUrl}" alt="${product.name}">
-                                                    <div>
-                                                        <span>${product.name}</span><br>
-                                                        <small class="text-success">${product.price.toFixed(2)}₺</small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    `;
-                            });
-                            $("#searchResults").html(html).show();
-                        } else {
-                            $("#searchResults").hide();
-                        }
-                    },
-                    error: function () {
-                        $("#searchResults").hide();
-                    }
-                });
-            });
-
-            // Arama kutusunun dışına tıklanınca sonuçları gizle
-            $(document).on("click", function (event) {
-                if (!$(event.target).closest("#search, #searchResults").length) {
-                    $("#searchResults").hide();
-                }
-            });
-        });
-    </script>
-    <script>
-        var swiper = new Swiper('.swiper-containerVitrin', {
-            effect: 'cube',
-            grabCursor: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            cubeEffect: {
-                shadow: true,
-                slideShadows: true,
-                shadowOffset: 20,
-                shadowScale: 0.94,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-            },
-        });
-
-    </script>
+	</style>
 </body>
+
 </html>

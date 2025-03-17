@@ -16,7 +16,6 @@ namespace susamQr.Controllers
             _logger = logger;
             this.appContext = appDbContext;
         }
-
         public IActionResult Index()
         {
             ViewData["SiteLogo"] = appContext.Settings.FirstOrDefault(s => s.Name == "logo")?.Value;
@@ -35,6 +34,13 @@ namespace susamQr.Controllers
 
             return View();
         }
+
+        [HttpGet("main")]
+        public IActionResult Main()
+        {
+            return RedirectToAction("Index");
+        }
+
 
         [HttpGet("kategori/{slug}")]
         public IActionResult CategoryDetail(string slug)
@@ -62,8 +68,13 @@ namespace susamQr.Controllers
 
             return View(category);
         }
+		[HttpGet("/client/assets/css/style.css")]
+		public IActionResult NoCss()
+        {
+            return View();
+        }
 
-        [HttpGet]
+		[HttpGet("Search")]
         public IActionResult Search(string q)
         {
             if (string.IsNullOrEmpty(q) || q.Length < 3)
@@ -110,9 +121,60 @@ namespace susamQr.Controllers
             return View(product);
         }
 
+        [HttpGet("secim")]
+        public IActionResult Pages()
+        {
+            ViewData["SiteLogo"] = appContext.Settings.FirstOrDefault(s => s.Name == "logo")?.Value;
+            ViewData["SiteDesc"] = appContext.Settings.FirstOrDefault(s => s.Name == "seoDesc")?.Value;
+            ViewData["SiteKeywords"] = appContext.Settings.FirstOrDefault(s => s.Name == "seoKeywords")?.Value;
+            ViewData["og:image"] = appContext.Settings.FirstOrDefault(s => s.Name == "og:image")?.Value;
+            ViewData["og:site_name"] = appContext.Settings.FirstOrDefault(s => s.Name == "og:site_name")?.Value;
+            ViewData["og:title"] = appContext.Settings.FirstOrDefault(s => s.Name == "og:title")?.Value;
+            ViewData["mainVideo"] = appContext.Settings.FirstOrDefault(s => s.Name == "mainVideo")?.Value;
+            ViewData["instagramLink"] = appContext.Settings.FirstOrDefault(s => s.Name == "instagramLink")?.Value;
+            ViewData["WptelefonNo"] = appContext.Settings.FirstOrDefault(s => s.Name == "WptelefonNo")?.Value;
+            ViewData["googleMapUrl"] = appContext.Settings.FirstOrDefault(s => s.Name == "googleMapUrl")?.Value;
+            ViewData["categories"] = appContext.Categories.ToList();
+            ViewData["highProducts"] = appContext.Products.Where(x => x.IsHighlight).ToList();
+            ViewData["slider-kapak"] = appContext.Sliders.Where(x => x.Title == "main").Select(x => x.ImageUrl).FirstOrDefault();
+            return View();
+
+        }
+
+        [HttpGet("kategoriler")]
+        public IActionResult Categories()
+        {
+            ViewData["SiteLogo"] = appContext.Settings.FirstOrDefault(s => s.Name == "logo")?.Value;
+            ViewData["SiteDesc"] = appContext.Settings.FirstOrDefault(s => s.Name == "seoDesc")?.Value;
+            ViewData["SiteKeywords"] = appContext.Settings.FirstOrDefault(s => s.Name == "seoKeywords")?.Value;
+            ViewData["og:image"] = appContext.Settings.FirstOrDefault(s => s.Name == "og:image")?.Value;
+            ViewData["og:site_name"] = appContext.Settings.FirstOrDefault(s => s.Name == "og:site_name")?.Value;
+            ViewData["og:title"] = appContext.Settings.FirstOrDefault(s => s.Name == "og:title")?.Value;
+            ViewData["mainVideo"] = appContext.Settings.FirstOrDefault(s => s.Name == "mainVideo")?.Value;
+            ViewData["instagramLink"] = appContext.Settings.FirstOrDefault(s => s.Name == "instagramLink")?.Value;
+            ViewData["WptelefonNo"] = appContext.Settings.FirstOrDefault(s => s.Name == "WptelefonNo")?.Value;
+            ViewData["googleMapUrl"] = appContext.Settings.FirstOrDefault(s => s.Name == "googleMapUrl")?.Value;
+            ViewData["categories"] = appContext.Categories.Include(x => x.Products).ToList();
+            ViewData["highProducts"] = appContext.Products.Where(x => x.IsHighlight).ToList();
+            return View();
+        }
+        [HttpGet("api/settings")]
+        public IActionResult GetSettings()
+        {
+            ViewData["instagramLink"] = appContext.Settings.FirstOrDefault(s => s.Name == "instagramLink")?.Value;
+            ViewData["WptelefonNo"] = appContext.Settings.FirstOrDefault(s => s.Name == "WptelefonNo")?.Value;
+
+            return Json(new
+            {
+                Instagram = ViewData["instagramLink"]?.ToString(),
+                WhatsApp = ViewData["WptelefonNo"]?.ToString()
+            });
+        }
         [HttpGet("iletisim")]
         public IActionResult Contact()
         {
+            ViewData["slider-kapak"] = appContext.Sliders.Where(x => x.Title == "main").Select(x => x.ImageUrl).FirstOrDefault();
+
             ViewData["instagramLink"] = appContext.Settings.FirstOrDefault(s => s.Name == "instagramLink")?.Value;
             ViewData["WptelefonNo"] = appContext.Settings.FirstOrDefault(s => s.Name == "WptelefonNo")?.Value;
             return View();

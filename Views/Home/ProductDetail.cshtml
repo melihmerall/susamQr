@@ -4,41 +4,69 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="swiper-container product-details" style="background:#fff;border-radius:10px;">
-    <div class="swiper-wrapper">
-        <div class="swiper-slide">
-            <img src="@Model.ImageUrl" alt="">
-        </div>
+<div class="views">
+    <div class="view view-main">
+        <div class="page">
+            <div class="navbar navbar-page">
+                <div class="navbar-inner sliding">
+                    <div class="left">
+                        <a href="/kategori/@Model.Category.Slug/" class="link back">
+                            <i class="ti-arrow-left"></i>
+                        </a>
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="navbar navbar-home">
+                <div class="navbar-inner">
+                    <div class="block">
+                        <div class="row text-center">
+                            <div class="col-20">
+                                <a href="/secim/" class="link icon-link">
+                                    <i class="ti-align-left"></i>
+                                </a>
+                            </div>
+                            <div class="col-20">
+                                <a href="/kategoriler/" class="link icon-link">
+                                    <i class="ti-layers"></i>
+                                </a>
+                            </div>
 
+                            <div class="col-20">
+                                <a href="#" id="whatsapp-link" target="_blank" class="link icon-link whatsapp">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </a>
+                            </div>
+                            <div class="col-20">
+                                <a href="#" id="instagram-link" class="link icon-link">
+                                    <i class="ti-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
-</div></br>
-<h5 class="text-center mt-1">@Model.Name</h5>
-<p class="text-center text-secondary small mb-2">
-    <a href="/kategori/@Model.Category.Slug"><span>@Model.Category.Name</span></a>
-</p>
-    </br>
-<h3 class="text-center text-success font-weight-normal mb-0">
-    ₺ @Model.Price.Value.ToString("N2")
-</h3>
-        </br>
-<div id="accordion">
-    <div class="card mb-1 border-0 shadow-sm">
-        <div class="card-header py-2" id="headingOne">
-            <a href="#" class="" data-toggle="collapse" data-target="#collapseOne" aria-controls="collapseOne">
-                Ürün Detayları
-            </a>
-        </div>
-        <div id="collapseOne" class="collapse show" data-parent="#accordion">
-            <div class="card-body">
-                @Model.Description
+            <div class="page-content">
+                <!-- menu single -->
+                <div class="menu-single segments-page">
 
-                <h5 class="mt-3"></h5>
-                <ul>
-                </ul>
+                    <div class="container">
+                        <h3 class="text-body-emphasis ">@Model.Category.Name</h3>
+<br />
+                        <div class="header">
+                            <img src="@Model.ImageUrl" alt="">
+                        </div>
+                        <div class="desc">
+                            <p class="price">@Model.Price.Value.ToString("N2")₺</p>
+                            <h4>@Model.Name</h4>
+                            <p>@Model.Description</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- end menu single -->
             </div>
         </div>
     </div>
 </div>
+
