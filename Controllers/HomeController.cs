@@ -177,6 +177,9 @@ namespace susamQr.Controllers
 
             ViewData["instagramLink"] = appContext.Settings.FirstOrDefault(s => s.Name == "instagramLink")?.Value;
             ViewData["WptelefonNo"] = appContext.Settings.FirstOrDefault(s => s.Name == "WptelefonNo")?.Value;
+            ViewData["iletisim-adres"] = appContext.Settings.FirstOrDefault(s => s.Name == "iletisimAdres")?.Value;
+            ViewData["iletisim-telNo"] = appContext.Settings.FirstOrDefault(s => s.Name == "iletisimTelefon")?.Value;
+
             return View();
         }
         public IActionResult Privacy()

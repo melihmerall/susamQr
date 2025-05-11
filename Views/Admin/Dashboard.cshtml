@@ -15,8 +15,8 @@
 					<div class="widget p-md clearfix">
 						<div class="pull-left">
 							<h3 class="widget-title">Site Bilgileri</h3>
-							<small class="text-color">Mail: @mail.FirstOrDefault().Value</small><br />
-						<small class="text-color">Telefon No: @telNo.FirstOrDefault().Value</small><br />
+							<small class="text-color">Mail: @mail.FirstOrDefault()?.Value</small><br />
+						<small class="text-color">Telefon No: @telNo.FirstOrDefault()?.Value</small><br />
 
 						</div>
 						<span class="pull-right fz-lg fw-500 text-primary" >Aktif</span>
@@ -69,7 +69,7 @@
 						<div class="widget-body clearfix">
 							<div class="pull-left">
 								<h3 class="widget-title text-success">Site Sahibi</h3>
-							<small class="text-color">@isim.FirstOrDefault().Value</small>
+							<small class="text-color">@isim.FirstOrDefault()?.Value</small>
 
 							</div>
 							<span class="pull-right big-icon watermark"><i class="fa fa-unlock-alt"></i></span>

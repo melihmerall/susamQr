@@ -32,14 +32,14 @@ namespace susamQr.Controllers
             }
             else
             {
-                var isAdmin = _context.Users.Where(x=>x.Username == "susamsokagi@admin.com").FirstOrDefault();
+                var isAdmin = _context.Users.Where(x=>x.Username == "gumushan@admin.com").FirstOrDefault();
                 if(isAdmin == null)
                 {
 					var adminUser = new User
 					{
-						Username = "susamsokagi@admin.com",
-                        Email = "susamsokagi@admin.com",
-						PasswordHash = Models.Entities.User.HashPassword("L4CiXspzSzWrvSg"),
+						Username = "gumushan@admin.com",
+                        Email = "gumushan@admin.com",
+						PasswordHash = Models.Entities.User.HashPassword("9vaZP7tb2U4IM2x"),
 					};
                     _context.Users.Add(adminUser);
                     _context.SaveChanges();

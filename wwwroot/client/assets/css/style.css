@@ -123,7 +123,7 @@ ul li {
             float: right;
             font-size: 14px;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 'Algerian' yerine daha modern bir serif font */
-            color: #d00807;
+            color: black;
             font-weight: 500;
         }
 
@@ -1379,7 +1379,7 @@ ul li {
         left: 0;
         line-height: 27px;
         font-size: 18px;
-        color: #d00807;
+        color: black;
     }
 
 .md .pages .content ul li .item-title i:last-child {
@@ -1758,7 +1758,7 @@ ul li {
 
     .menu-single .desc .price {
         font-size: 20px;
-        color: #ff5722;
+        color: black;
         margin-bottom: 10px;
     }
 
@@ -1925,8 +1925,7 @@ ul li {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); /* Tam ortalamak için */
-    background-color: rgba(255, 0, 0, 0.8); /* Hafif şeffaf kırmızı buton */
-    color: white;
+    background-color:white; /* Hafif şeffaf yeşil buton */
     font-size: 18px;
     padding: 15px 30px;
     border: none;
